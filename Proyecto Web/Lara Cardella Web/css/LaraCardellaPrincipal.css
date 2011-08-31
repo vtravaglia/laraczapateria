@@ -1,0 +1,95 @@
+﻿body {
+	padding:0;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+	line-height: 1.5em;
+	width: 100%;
+	display: table;
+	margin:auto; 
+}
+
+#formLaraCardella
+{
+	text-align:center;
+}
+
+#cabecera
+{
+	width:1300px;
+	height:239px;
+	background: url('../images/cabecera.jpg') no-repeat right center;
+	margin:auto; /*debe estar para que quede centrada*/
+}
+
+/**MENU**/
+#menu
+{
+	width:1300px;
+	height:67px;
+	margin:auto;
+}
+
+#menuHome
+{
+	background:url('../images/menuHome.jpg') no-repeat right center;
+	width:134px;
+	height:67px;
+	margin:auto;
+	float:left;
+}
+#menuQuienesSomos
+{
+	background:url('../images/menuQuienesSomos.jpg') no-repeat right center;
+	width:231px;
+	height:67px;
+	margin:auto;
+	float:left;
+}
+#menuMisionVision
+{
+	background:url('../images/menuMisionVision.jpg') no-repeat right center;
+	width:218px;
+	height:67px;
+	margin:auto;
+	float:left;
+}
+#menuContacto
+{
+	background:url('../images/menuContacto.jpg') no-repeat right center;
+	width:150px;
+	height:67px;
+	margin:auto;
+	float:left;
+}
+#menuResto
+{
+	background:url('../images/menuRestoCabecera.jpg') no-repeat right center;
+	width:567px;
+	height:67px;
+	margin:auto;
+	float:left;
+}
+
+/**CONTENIDO**/
+#contenido
+{
+	height:656px;
+	width:1300px;
+	margin:auto;
+}
+#contenidoIzq
+{
+	background:url('../images/body.jpg') no-repeat right center;
+	width:644px;
+	height:462px;
+	margin:auto;
+	float:left;
+}
+#contenidoDer
+{
+	background:url('../images/restoBody.jpg') no-repeat right center;
+	width:656px;
+	height:462px;
+	margin:auto;
+	float:left;
+}
