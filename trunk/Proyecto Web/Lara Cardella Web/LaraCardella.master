@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="LaraCardella.master.cs" Inherits="LaraCardella" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Página sin título</title>
+    <link href="css/LaraCardellaPrincipal.css" rel="stylesheet" type="text/css" />
+    <link href="yoxview/yoxview.css" rel="stylesheet" type="text/css" />
+     
+    <script type="text/javascript" src="scripts/jquery1.6.2.js"></script>
+    <script type="text/javascript" src="scripts/scriptsCatalogo.js"></script>
+    <script type="text/javascript" src="yoxview/yoxview-init.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="cabecera">  
+    </div>
+    <div id="menu">
+        <div id="menuHome">
+        </div>
+        <div id="menuQuienesSomos">
+        </div>
+        <div id="menuMisionVision">
+        </div>
+        <div id="menuContacto">
+        </div>
+        <div id="menuResto">
+        </div>
+    </div>
+    <div id="contenido">
+            <div id="contenidoIzq" class="transparent">
+                <asp:ContentPlaceHolder id="contenidoPlaceHolder" runat="server">
+                
+                </asp:ContentPlaceHolder>
+            </div>
+            
+            <div id="contenidoDer">
+                <asp:ContentPlaceHolder id="contenidoDerPlaceHolder" runat="server">
+                
+                </asp:ContentPlaceHolder>
+            </div>
+    </div>
+    </form>
+</body>
+</html>

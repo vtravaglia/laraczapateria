@@ -1,36 +1,38 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/LaraCardella.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" Title=":: Lara Cardella Zapatos & Accesorios ::" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="contenidoPlaceHolder" Runat="Server">
+  
+    <p id="menuCalzados" class="tituloMenuCatalogo">
+        <asp:Label ID="lblCalzados" runat="server" Text="Calzados"></asp:Label>
+    </p>
+    <p class="menuCatalogo">
+        <asp:Label ID="lbCalOtIn"  runat="server" Text="Otoño - Invierno"></asp:Label>
+    </p>
+    <p class="menuCatalogo">
+        <asp:Label ID="lblCaPrVe"  runat="server" Text="Primavera - Verano"></asp:Label>
+    </p>   
+    
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Lara Cardella</title>
-    <link href="css/LaraCardellaPrincipal.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <form id="formLaraCardella" runat="server">
-    <div id="cabecera">  
+    <p id="menuAccesorios" class="tituloMenuCatalogo">
+        <asp:Label ID="lblAccesorios" runat="server" Text="Accesorios"></asp:Label>
+    </p>    
+    <p class="menuCatalogo">
+        <asp:Label ID="lblAcOtIn"  runat="server" Text="Otoño - Invierno"></asp:Label>
+    </p>
+    <p class="menuCatalogo">
+        <asp:Label ID="lblAcPrVe"  runat="server" Text="Primavera - Verano"></asp:Label>
+    </p>
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="contenidoDerPlaceHolder" Runat="Server">
+
+
+    <div id="catalogo" class="transparent">
+        <a href="images/zapatos/zapatosGrandes.jpg"  class="yoxview">
+            <img src="images/zapatos/zapatos.jpg" alt="First" title="First image" />
+        </a>
     </div>
-    <div id="menu">
-        <div id="menuHome">
-        </div>
-        <div id="menuQuienesSomos">
-        </div>
-        <div id="menuMisionVision">
-        </div>
-        <div id="menuContacto">
-        </div>
-        <div id="menuResto">
-        </div>
-    </div>
-    <div id="contenido">
-        <div id="contenidoIzq">
-        
-        </div>
-        <div id="contenidoDer">
-        
-        </div>
-    </div>
-    </form>
-</body>
-</html>
+
+</asp:Content>
