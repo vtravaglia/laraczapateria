@@ -1,4 +1,5 @@
-﻿body {
+﻿body
+{
 	padding:0;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 12px;
@@ -15,57 +16,57 @@
 
 #cabecera
 {
-	width:1300px;
-	height:239px;
-	background: url('../images/cabecera.jpg') no-repeat right center;
+	width:900px;
+	height:166px;
+	background: url('../images/lc_cabecera.jpg') no-repeat right center;
 	margin:auto; /*debe estar para que quede centrada*/
 }
 
 /**MENU SITIO**/
 #menu
 {
-	width:1300px;
-	height:67px;
+	width:900px;
+	height:45px;
 	margin:auto;
 }
 
 #menuHome
 {
-	background:url('../images/menuHome.jpg') no-repeat right center;
-	width:134px;
-	height:67px;
+	background:url('../images/lc_menuHome.jpg') no-repeat right center;
+	width:91px;
+	height:50px;
 	margin:auto;
 	float:left;
 }
 #menuQuienesSomos
 {
-	background:url('../images/menuQuienesSomos.jpg') no-repeat right center;
-	width:231px;
-	height:67px;
+	background:url('../images/lc_menuQuienesSomos.jpg') no-repeat right center;
+	width:162px;
+	height:50px;
 	margin:auto;
 	float:left;
 }
 #menuMisionVision
 {
-	background:url('../images/menuMisionVision.jpg') no-repeat right center;
-	width:218px;
-	height:67px;
+	background:url('../images/lc_menuMisionVision.jpg') no-repeat right center;
+	width:148px;
+	height:50px;
 	margin:auto;
 	float:left;
 }
 #menuContacto
 {
-	background:url('../images/menuContacto.jpg') no-repeat right center;
-	width:150px;
-	height:67px;
+	background:url('../images/lc_menuContacto.jpg') no-repeat right center;
+	width:111px;
+	height:50px;
 	margin:auto;
 	float:left;
 }
 #menuResto
 {
-	background:url('../images/menuRestoCabecera.jpg') no-repeat right center;
-	width:567px;
-	height:67px;
+	background:url('../images/lc_menuRestoCabecera.jpg') no-repeat right center;
+	width:388px;
+	height:50px;
 	margin:auto;
 	float:left;
 }
@@ -73,58 +74,77 @@
 /**MENU CATALOGO**/
 #contenido
 {
-	height:656px;
-	width:1300px;
+	height:321px;
+	width:900px;
 	margin:auto;
 }
 #contenidoIzq
 {
-	background:#fff;
-	width:644px;
-	height:462px;
+	width:200px;
+	height:316px;
 	margin:auto;
 	float:left;
 	z-index:1; /*z-index para poder solapar divs*/
 	position:absolute;
+	/*background:url('../images/lc_body.jpg') no-repeat right center;*/
 }
 
 #contenidoDer
 {
-	background:url('../images/restoBody.jpg') no-repeat right center;
-	width:1300px;
-	height:462px;
-	margin:auto;
+	background:url('../images/lc_restoBody.jpg') no-repeat right center;
+	width:700px;
+	height:316px;
+	margin:4px auto auto 200px;
 	float:left;
 	position:absolute;
 	z-index:0; /*z-index para poder solapar divs*/
 }
 
-.transparent /*clase para hacer transparente un div*/
+.bordeCatalogo
 {
-   filter:alpha(opacity=60); 
-   -moz-opacity: 0.6; 
-   opacity: 0.6; 
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+	border-radius: 10px;
+    border: 1px solid #949191;
+}
+
+#mycarousel li a img
+{
+	z-index:2; /*z-index para poder solapar divs*/
+	position:absolute;
+	filter:alpha(opacity=100); 
+	-moz-opacity: 1; 
+	opacity: 1; 
+}
+
+#mycarousel2 li a img
+{
+	z-index:2; /*z-index para poder solapar divs*/
+	position:absolute;
+	filter:alpha(opacity=100); 
+	-moz-opacity: 1; 
+	opacity: 1; 
 }
 
 .menuCatalogo
 {
-	font-size:20px;
-	margin-left:35px;
+	font-size:15px;
+	margin-left:25px;
 	letter-spacing:2px;
-	margin-top:35px;
+	margin-top:20px;
 	cursor:pointer;
 	z-index:1;
 	position:relative;
-	width:300px;
+	width:200px;
 
 }
 
 .tituloMenuCatalogo
 {
-	margin-top:70px;
+	margin-top:35px;
 	font-weight: bold;
-	font-size:20px;
-	margin-left:35px;
+	font-size:15px;
+	margin-left:25px;
 	letter-spacing:2px;
 	cursor:pointer;
 	z-index:1;
@@ -134,25 +154,28 @@
 /**CATALOGO*/
 #catalogo
 {
-	background:#fff;
 	display:none;
-	z-index:2;
+	z-index:-1;
 	position:absolute;
-	margin:25px auto auto 320px;
+	margin:10px auto auto 30px;
 	float:left;
-	width:980px;
-	height:430px;
+	width:660px;
+	height:300px;
 	
 }
 
-#catalogo a img
+yoxview
 {
-	 filter:alpha(opacity=100); 
-   -moz-opacity: 1; 
-   opacity: 1;
-   border-style:solid;
-	border-color:#A19F9F; 
+	filter:alpha(opacity=100); 
+	-moz-opacity: 1; 
+	position:absolute;
+	z-index:2;
+	opacity: 1;
+	border-style:solid;
+	border-color:#A19F9F;
 }
+
+
 
 
 
