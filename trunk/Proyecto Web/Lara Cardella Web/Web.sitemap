@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="Default.aspx" title="Inicio"  description="Pagina principal">
+        <siteMapNode url="QuienesSomos.aspx" title="Quienes Somos"  description="Quienes Somos" />
+        <siteMapNode url="VisionMision.aspx" title="Vision Mision"  description="Vision y Mision" />
+        <siteMapNode url="Calzados.aspx" title="Calzados"  description="Calzados">
+            <siteMapNode url="OtoInvCalzados.aspx" title="Otoño Invierno"  description="Coleccion Otoño Invierno de calzados" />
+            <siteMapNode url="PriVerCalzados.aspx" title="Primavera Verano"  description="Coleccion Primavera Verano de calzados" />
+        </siteMapNode>
+        <siteMapNode url="Accesorios.aspx" title="Accesorios"  description="Accesorios">
+            <siteMapNode url="OtoInvAccesorios.aspx" title="Otoño Invierno"  description="Coleccion Otoño Invierno de accesorios" />
+            <siteMapNode url="PriVerAccesorios.aspx" title="Primavera Verano"  description="Coleccion Primavera Verano de accesorios" />
+        </siteMapNode>
+        <siteMapNode url="Contacto.aspx" title="Formulario de Contacto"  description="Formulario de contacto" />
+        <siteMapNode url="adminConsole.aspx" title="Consola Administrativa"  description="Consola Administrativa" />
+    </siteMapNode>
+</siteMap>
