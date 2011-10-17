@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contenidoPlaceHolder" Runat="Server">
   
     <p id="menuCalzados" class="tituloMenuCatalogo">
+        <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
         <asp:Label ID="lblCalzados" runat="server" Text="Calzados"></asp:Label>
     </p>
     <p class="menuCatalogo">
