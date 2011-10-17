@@ -14,32 +14,54 @@ using System.Data.Odbc;
 /// <summary>
 /// Descripción breve de Calzado
 /// </summary>
-public class Calzado : ConexionBD
+public class Calzado
 {
+    private int idCalzado;
+
+    public int IdCalzado
+    {
+        get { return idCalzado; }
+        set { idCalzado = value; }
+    }
+    private String codigo;
+
+    public String Codigo
+    {
+        get { return codigo; }
+        set { codigo = value; }
+    }
+    private String nombre;
+
+    public String Nombre
+    {
+        get { return nombre; }
+        set { nombre = value; }
+    }
+    private String descripcion;
+
+    public String Descripcion
+    {
+        get { return descripcion; }
+        set { descripcion = value; }
+    }
+
+    private String pathImagenChica;
+
+    public String PathImagenChica
+    {
+        get { return pathImagenChica; }
+        set { pathImagenChica = value; }
+    }
+
+    private String pathImagenGrande;
+
+    public String PathImagenGrande
+    {
+        get { return pathImagenGrande; }
+        set { pathImagenGrande = value; }
+    }
+
 	public Calzado()
 	{
 	}
-
-    //Obtengo todos los calzados de base de datos
-    public static DataTable getCalzados()
-    {
-        try
-        {
-            OdbcCommand cmd = new OdbcCommand("SELECT * FROM Calzado", ObtenerConexion());
-
-            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            cmd.Connection.Close();
-
-            return dt;
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-
-    }
 }
