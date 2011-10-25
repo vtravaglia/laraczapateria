@@ -15,7 +15,6 @@ using System.Collections.Generic;
 public partial class _Default : System.Web.UI.Page
 {
     private ConexionBD gestor;
-    public List<Calzado> listaCalzados;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,7 +22,8 @@ public partial class _Default : System.Web.UI.Page
         {
             gestor = new ConexionBD();
 
-            listaCalzados=gestor.getCalzados();
+            //Obtengo la lista de imagenes de los calzados (imagenChica1 : imagenGrande1 , imagenChica2 : imagenGrande2)
+            this.listaCalzados.Value = getListaCalzados();
         }
         catch (CardellaException ex)
         {
@@ -31,5 +31,13 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
-
+    private String getListaCalzados()
+    {
+        String listaCalzado = "";
+        foreach (Calzado calzado in gestor.getCalzados())
+        {
+            listaCalzado += calzado.PathImagenChica+" : "+calzado.PathImagenGrande+",";
+        }
+        return listaCalzado;
+    }
 }

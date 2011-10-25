@@ -22,6 +22,7 @@ public class CardellaException : Exception
         this.Message = message;
 	}
 
+    
     public String Message
     {
         get { return this.message; }

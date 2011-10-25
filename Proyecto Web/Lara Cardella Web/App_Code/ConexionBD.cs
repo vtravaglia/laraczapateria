@@ -65,10 +65,10 @@ public class ConexionBD
             OdbcCommand cmd = new OdbcCommand("SELECT c.idCalzado, c.codigo, c.nombre, c.descripcion, c.idColeccion ,i.pathGrande, i.pathChica FROM laracardella.calzado c, laracardella.imagen i WHERE c.idCalzado=i.idCalzado", con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
-
-            Calzado calzado = new Calzado();
+   
             while(dr.Read())
             {
+                Calzado calzado = new Calzado();
                 calzado.IdCalzado=dr.GetInt32(0);
                 calzado.Codigo = dr.GetString(1);
                 calzado.Nombre = dr.GetString(2);
