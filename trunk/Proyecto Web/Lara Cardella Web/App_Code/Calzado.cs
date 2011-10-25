@@ -14,7 +14,8 @@ using System.Data.Odbc;
 /// <summary>
 /// Descripción breve de Calzado
 /// </summary>
-public class Calzado
+ [Serializable]
+public class Calzado 
 {
     private int idCalzado;
 
