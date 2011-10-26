@@ -69,7 +69,9 @@ public class Calzado:ConexionBD
     {
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT * FROM Calzado", ObtenerConexion());
+            OdbcCommand cmd = new OdbcCommand("SELECT ca.idCalzado, ca.codigo, ca.nombre, ca.descripcion, co.nombre as coleccion "+  
+                                              "FROM Calzado ca, Coleccion co "+
+                                              "WHERE co.idColeccion = ca.idColeccion", ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -91,6 +93,10 @@ public class Calzado:ConexionBD
         OdbcConnection conexion = null;
         try
         {
+            if (pathsImgList == null || pathsImgList.Count == 0)
+            {
+                throw new pathImgEmptyException();
+            }
             conexion = ObtenerConexion();
             //Guardo los datos del calzado
             String sentenciaCalzado = "insert into Calzado (codigo, nombre, descripcion, idColeccion) values ('" + cod + "', '" + nom + "', '" + desc + "'," + col.ToString() + ")";
@@ -116,10 +122,15 @@ public class Calzado:ConexionBD
 
             return true;
         }
-        catch (Exception)
+        catch (pathImgEmptyException imgEx)
+        {
+            throw imgEx;
+        }
+        catch (Exception e)
         {
             //cierro la conexion
             conexion.Close();
+            throw e; //new Exception(e.Message);
         }
         return false;
     }

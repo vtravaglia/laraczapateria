@@ -44,19 +44,38 @@
                 <p>
                     <asp:Label ID="lblImagenesCargadas" runat="server" Text="imgcargadas"></asp:Label>
                 </p>
-                <p>&nbsp;</p>
                 <p>
-                    <asp:GridView ID="grillaCalzados" runat="server">
-                    </asp:GridView>
-                </p>
-                <p>&nbsp;</p>
-            <p>&nbsp;&nbsp; </p>
-            <p>
-                &nbsp;</p>
+                    &nbsp;</p>
                 <p>
                     <asp:Button ID="btnGuardar" runat="server" onclick="btnGuardar_Click" Text="Guardar" />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </p>
+                </p>
+                <p>
+                    <asp:GridView ID="grillaCalzados" runat="server" AutoGenerateColumns="False" 
+                        AutoGenerateSelectButton="True" CellPadding="4" ForeColor="#333333" 
+                        GridLines="None">
+                        <RowStyle BackColor="#EFF3FB" />
+                        <Columns>
+                            <asp:BoundField DataField="idCalzado" HeaderText="idCalzado" />
+                            <asp:BoundField DataField="codigo" HeaderText="Codigo" />
+                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="descripcion" HeaderText="Descripcion" />
+                            <asp:BoundField DataField="coleccion" HeaderText="Coleccion" />
+                        </Columns>
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <EditRowStyle BackColor="#2461BF" />
+                        <AlternatingRowStyle BackColor="White" />
+                    </asp:GridView>
+                </p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+            <p>&nbsp;<asp:Button ID="btnModificar" runat="server" CausesValidation="False" 
+                    onclick="btnModificar_Click" Text="Modificar" />
+&nbsp;&nbsp;
+                <asp:Button ID="btnEliminar" runat="server" CausesValidation="False" 
+                    Text="Eliminar" />
+            </p>
         
         
         </div>
