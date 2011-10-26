@@ -24,9 +24,18 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         {
             cargarColecciones();
             cargarCalzados();
+            limpiarCampos();
             //inicializo la variable de session
             Session["imgPathsToSaveInBD"] = new List<Imagen>();
         }
+    }
+
+    private void limpiarCampos()
+    {
+        txtCodigo.Text = "";
+        txtNombre.Text = "";
+        txtDesc.Text = "";
+        lblImagenesCargadas.Text = "";
     }
 
     private void cargarColecciones()
@@ -68,18 +77,30 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             cod = txtCodigo.Text;
             nom = txtNombre.Text;
             desc = txtDesc.Text;
-            pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
-            if (Calzado.insertCalzado(cod, nom, desc, idCol, pathImgsToSaveInBD))
+            try
             {
-                //CALZADO GUARDADO CON EXITO!!!
-                lblOutput.Text = "Calzado guardado con exito!";
+                pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
+                if (Calzado.insertCalzado(cod, nom, desc, idCol, pathImgsToSaveInBD))
+                {
+                    //CALZADO GUARDADO CON EXITO!!!
+                    lblOutput.Text = "Calzado guardado con exito!";
+                    cargarCalzados();
+                    limpiarCampos();
+                }
+                else
+                {
+                    //ERROR AL GUARDAR EL CALZADO
+                    lblOutput.Text = "Error al guardar el calzado";
+                }
             }
-            else
+            catch (pathImgEmptyException imgEx)
             {
-                //ERROR AL GUARDAR EL CALZADO
-                lblOutput.Text = "Error al guardar el calzado";
+                lblOutput.Text = "Ninguna imagen cargada. Debe cargar al menos una imagen para el calzado.";
             }
-
+            catch (Exception ex)
+            {
+                lblOutput.Text = ex.Message;
+            }
         }
         else
         {
@@ -215,5 +236,21 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
     public bool ThumbnailCallback()
     {
         return false;
-    } 
+    }
+    protected void btnModificar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int id = Convert.ToInt32(grillaCalzados.SelectedRow.Cells[1].Text);
+            lblOutput.Text = id.ToString();
+            //TODO
+            //tomar el id, traer ese calzado de la bd y mostrar los datos en los campos...
+            //ver como hacer para modificar las imagenes
+
+        }
+        catch (Exception er)
+        {
+            lblOutput.Text = er.Message;
+        }
+    }
 }
