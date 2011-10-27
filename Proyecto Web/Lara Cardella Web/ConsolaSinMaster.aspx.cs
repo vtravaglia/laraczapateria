@@ -242,15 +242,26 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         try
         {
             int id = Convert.ToInt32(grillaCalzados.SelectedRow.Cells[1].Text);
-            lblOutput.Text = id.ToString();
-            //TODO
-            //tomar el id, traer ese calzado de la bd y mostrar los datos en los campos...
-            //ver como hacer para modificar las imagenes
+            DataTable dt = Calzado.getCalzadoById(id);
+            txtId.Text = dt.Rows[0][0].ToString();
+            txtCodigo.Text = dt.Rows[0][1].ToString();
+            txtNombre.Text = dt.Rows[0][2].ToString();
+            txtDesc.Text = dt.Rows[0][3].ToString();
 
+            ddlColeccion.SelectedIndex = 0;
+            for (int i = 0; i < ddlColeccion.Items.Count; i++)
+            {
+                ddlColeccion.SelectedIndex = i;
+                if (ddlColeccion.SelectedValue == dt.Rows[0][4].ToString())
+                {
+                    break;
+                }
+            }
+            //TODO - cargar las imagenes
         }
-        catch (Exception er)
+        catch (Exception ex)
         {
-            lblOutput.Text = er.Message;
+            lblOutput.Text = ex.Message;
         }
     }
 }
