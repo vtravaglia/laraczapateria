@@ -87,6 +87,29 @@ public class Calzado:ConexionBD
         }
     }
 
+    //Obtengo un calzado de base de datos por su id
+    public static DataTable getCalzadoById(int id)
+    {
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT ca.idCalzado, ca.codigo, ca.nombre, ca.descripcion, ca.idColeccion " +
+                                              "FROM Calzado ca " +
+                                              "WHERE ca.idCalzado="+id, ObtenerConexion());
+
+            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cmd.Connection.Close();
+
+            return dt;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
     //Inserto un nuevo calzado
     public static bool insertCalzado(String cod, String nom, String desc, int col, List<Imagen> pathsImgList)
     {

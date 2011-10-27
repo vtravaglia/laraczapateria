@@ -24,6 +24,7 @@
         <p>Codigo<asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqValidCodigo" runat="server" 
                 ControlToValidate="txtCodigo" Display="Dynamic" ErrorMessage="Codigo requerido"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="txtId" runat="server" Enabled="False"></asp:TextBox>
                 </p>
         <p>Nombre<asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="reqValidNombre" runat="server" 
