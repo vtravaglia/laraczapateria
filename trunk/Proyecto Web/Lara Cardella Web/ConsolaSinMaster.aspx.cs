@@ -25,17 +25,17 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             cargarColecciones();
             cargarCalzados();
             limpiarCampos();
-            //inicializo la variable de session
-            Session["imgPathsToSaveInBD"] = new List<Imagen>();
         }
     }
 
     private void limpiarCampos()
     {
+        txtId.Text = "";
         txtCodigo.Text = "";
         txtNombre.Text = "";
         txtDesc.Text = "";
         lblImagenesCargadas.Text = "";
+        imgPicture.ImageUrl = null;
     }
 
     private void cargarColecciones()
@@ -80,18 +80,23 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             try
             {
                 pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
-                if (Calzado.insertCalzado(cod, nom, desc, idCol, pathImgsToSaveInBD))
+                if (txtId.Text.CompareTo("") != 0)
                 {
-                    //CALZADO GUARDADO CON EXITO!!!
-                    lblOutput.Text = "Calzado guardado con exito!";
-                    cargarCalzados();
-                    limpiarCampos();
+                    //Modifico el calzado existente
+                    Calzado.updateCalzado(Convert.ToInt32(txtId.Text),cod, nom, desc, idCol, pathImgsToSaveInBD);
+                    lblOutput.Text = "Calzado actualizado con exito!";
                 }
                 else
                 {
-                    //ERROR AL GUARDAR EL CALZADO
-                    lblOutput.Text = "Error al guardar el calzado";
+                    //Guardo el nuevo calzado
+                    Calzado.insertCalzado(cod, nom, desc, idCol, pathImgsToSaveInBD);
+                    lblOutput.Text = "Calzado registrado con exito!";
                 }
+                //No limpio los paths de las imagenes en el limpiarCampos() porque el limpiarCampos()
+                //se ejecuta en el load y la variable session no se tiene que limpiar ahi.
+                Session["imgPathsToSaveInBD"] = new List<Imagen>();
+                cargarCalzados();
+                limpiarCampos();
             }
             catch (pathImgEmptyException imgEx)
             {
@@ -209,8 +214,8 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
                 {
                     pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
                 }
-                img.PathBig = Server.MapPath(sSavePath + sFilename);
-                img.PathSmall = Server.MapPath(sSavePath + sThumbFile);
+                img.PathBig = sSavePath + sFilename;
+                img.PathSmall = sSavePath + sThumbFile;
                 pathImgsToSaveInBD.Add(img);
                 Session["imgPathsToSaveInBD"] = pathImgsToSaveInBD;
 
@@ -241,13 +246,17 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
     {
         try
         {
+            limpiarCampos();
+            lblOutput.Text = "";
+            //obtengo el id del calzado a modificar
             int id = Convert.ToInt32(grillaCalzados.SelectedRow.Cells[1].Text);
+            //traigo los datos del calzado de la bd
             DataTable dt = Calzado.getCalzadoById(id);
+            //cargo los datos grales del calzado
             txtId.Text = dt.Rows[0][0].ToString();
             txtCodigo.Text = dt.Rows[0][1].ToString();
             txtNombre.Text = dt.Rows[0][2].ToString();
             txtDesc.Text = dt.Rows[0][3].ToString();
-
             ddlColeccion.SelectedIndex = 0;
             for (int i = 0; i < ddlColeccion.Items.Count; i++)
             {
@@ -257,7 +266,16 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
                     break;
                 }
             }
-            //TODO - cargar las imagenes
+            //cargo las imagenes del calzado en la variable session
+            List<Imagen> listaImgs = Calzado.getImagenesCalzado(id);
+            Session["imgPathsToSaveInBD"] = listaImgs;
+            if (listaImgs != null)
+            {
+                foreach (Imagen img in listaImgs)
+                {
+                    lblImagenesCargadas.Text += img.PathBig.ToString();
+                }
+            }
         }
         catch (Exception ex)
         {

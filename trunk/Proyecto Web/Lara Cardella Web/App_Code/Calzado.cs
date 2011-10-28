@@ -93,8 +93,8 @@ public class Calzado:ConexionBD
         try
         {
             OdbcCommand cmd = new OdbcCommand("SELECT ca.idCalzado, ca.codigo, ca.nombre, ca.descripcion, ca.idColeccion " +
-                                              "FROM Calzado ca " +
-                                              "WHERE ca.idCalzado="+id, ObtenerConexion());
+                                              "FROM calzado ca " +
+                                              "WHERE ca.idCalzado="+id.ToString(), ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -111,7 +111,7 @@ public class Calzado:ConexionBD
     }
 
     //Inserto un nuevo calzado
-    public static bool insertCalzado(String cod, String nom, String desc, int col, List<Imagen> pathsImgList)
+    public static void insertCalzado(String cod, String nom, String desc, int col, List<Imagen> pathsImgList)
     {
         OdbcConnection conexion = null;
         try
@@ -122,7 +122,7 @@ public class Calzado:ConexionBD
             }
             conexion = ObtenerConexion();
             //Guardo los datos del calzado
-            String sentenciaCalzado = "insert into Calzado (codigo, nombre, descripcion, idColeccion) values ('" + cod + "', '" + nom + "', '" + desc + "'," + col.ToString() + ")";
+            String sentenciaCalzado = "insert into calzado (codigo, nombre, descripcion, idColeccion) values ('" + cod + "', '" + nom + "', '" + desc + "'," + col.ToString() + ")";
             OdbcCommand cmd = new OdbcCommand(sentenciaCalzado, conexion);
 
             cmd.ExecuteNonQuery();
@@ -132,7 +132,7 @@ public class Calzado:ConexionBD
             cmd = new OdbcCommand(sentenciaLastCalzado, conexion);
             int lastIdCalzado = Convert.ToInt32(cmd.ExecuteScalar());
 
-            //Guardo los path de las imagenes grandes
+            //Guardo los path de las imagenes
             String sentenciaImg;
             foreach (Imagen img in pathsImgList)
             {
@@ -140,10 +140,7 @@ public class Calzado:ConexionBD
                 cmd = new OdbcCommand(sentenciaImg, conexion);
                 cmd.ExecuteNonQuery();
             }
-            //cierro la conexion
             conexion.Close();
-
-            return true;
         }
         catch (pathImgEmptyException imgEx)
         {
@@ -151,10 +148,86 @@ public class Calzado:ConexionBD
         }
         catch (Exception e)
         {
-            //cierro la conexion
-            conexion.Close();
-            throw e; //new Exception(e.Message);
+            throw e;
         }
-        return false;
+    }
+
+    //Modifico un calzado existente
+    public static void updateCalzado(int id, String cod, String nom, String desc, int col, List<Imagen> pathsImgList)
+    {
+        OdbcConnection conexion = null;
+        try
+        {
+            if (pathsImgList == null || pathsImgList.Count == 0)
+            {
+                throw new pathImgEmptyException();
+            }
+            conexion = ObtenerConexion();
+            //Actualizo los datos del calzado
+            String sentenciaCalzado = "update calzado set codigo='"+cod+"', nombre='" + nom + 
+                                        "', descripcion='" + desc + "',idColeccion=" + col.ToString() + 
+                                        " where idCalzado=" + id.ToString();
+            OdbcCommand cmd = new OdbcCommand(sentenciaCalzado, conexion);
+
+            cmd.ExecuteNonQuery();
+
+            //Borro los path de las imagenes
+            String sentenciaImg;
+            foreach (Imagen img in pathsImgList)
+            {
+                sentenciaImg = "delete from imagen where idcalzado=" + id.ToString();
+                cmd = new OdbcCommand(sentenciaImg, conexion);
+                cmd.ExecuteNonQuery();
+            }
+
+            //Registro los path de las imagenes todos de nuevo
+            foreach (Imagen img in pathsImgList)
+            {
+                sentenciaImg = "insert into imagen (idCalzado, pathGrande, pathChica) values ('" + id + "', '" + img.PathBig + "', '" + img.PathSmall + "')";
+                cmd = new OdbcCommand(sentenciaImg, conexion);
+                cmd.ExecuteNonQuery();
+            }
+            conexion.Close();
+        }
+        catch (pathImgEmptyException imgEx)
+        {
+            throw imgEx;
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+
+    //Obtengo las imagenes de un calzado de base de datos
+    public static List<Imagen> getImagenesCalzado(int idCalzado)
+    {
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT pathGrande, pathChica " +
+                                              "FROM imagen " +
+                                              "WHERE idCalzado=" + idCalzado.ToString(), ObtenerConexion());
+
+            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cmd.Connection.Close();
+            List<Imagen> listaImagenes = new List<Imagen>();
+            Imagen img;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                img = new Imagen();
+                img.PathBig = dt.Rows[i]["pathGrande"].ToString();
+                img.PathSmall = dt.Rows[i]["pathChica"].ToString();
+                listaImagenes.Add(img);
+            }
+            return listaImagenes;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
     }
 }

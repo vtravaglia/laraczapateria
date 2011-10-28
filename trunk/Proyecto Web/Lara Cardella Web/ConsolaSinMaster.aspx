@@ -39,7 +39,7 @@
                 </p>
                 <p>
                 <asp:Image ID="imgPicture" runat="server" Height="107px" Width="140px" />
-            &nbsp;<asp:Label ID="lblOutput" runat="server" Text="mensaje"></asp:Label>
+            &nbsp;<asp:Label ID="lblOutput" runat="server" Text="mensaje" ForeColor="Red"></asp:Label>
                 </p>
                 <p><b>Imagenes Cargadas:</b></p>
                 <p>
