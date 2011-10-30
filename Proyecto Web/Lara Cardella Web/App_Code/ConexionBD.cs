@@ -55,6 +55,10 @@ public class ConexionBD
         }
     }
 
+    /// <summary>
+    /// Retorna la lista de todos los calzados
+    /// </summary>
+    /// <returns></returns>
     public List<Calzado> getCalzados()
     {
         con = ObtenerConexion();
@@ -73,6 +77,7 @@ public class ConexionBD
                 calzado.Codigo = dr.GetString(1);
                 calzado.Nombre = dr.GetString(2);
                 calzado.Descripcion = dr.GetString(3);
+                calzado.IdColeccion = dr.GetInt32(4);
                 calzado.PathImagenGrande = dr.GetString(5);
                 calzado.PathImagenChica = dr.GetString(6);
                 
@@ -88,6 +93,45 @@ public class ConexionBD
             con.Close();
         }
         return listaCalzados;
+    }
+
+    /// <summary>
+    /// Retorna la lista de todas los accesorios
+    /// </summary>
+    /// <returns></returns>
+    public List<Accesorio> getAccesorios()
+    {
+        con = ObtenerConexion();
+        DataSet ds = new DataSet();
+        List<Accesorio> listaAccesorio = new List<Accesorio>();
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT a.idAccesorio, a.codigo, a.descripcion, a.idColeccion ,i.pathGrande, i.pathChica FROM laracardella.accesorio a, laracardella.imagen i WHERE a.idAccesorio=i.idAccesorio", con);
+            cmd.CommandType = CommandType.Text;
+            OdbcDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Accesorio accesorio = new Accesorio();
+                accesorio.IdAccesorio = dr.GetInt32(0);
+                accesorio.Codigo = dr.GetString(1);
+                accesorio.Descripcion = dr.GetString(2);
+                accesorio.IdColeccion = dr.GetInt32(3);
+                accesorio.PathImagenGrande = dr.GetString(4);
+                accesorio.PathImagenChica = dr.GetString(5);
+
+                listaAccesorio.Add(accesorio);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new CardellaException("Ocurrio un problema al intentar obtener todos los zapatos de la base de datos. " + e.Message);
+        }
+        finally
+        {
+            con.Close();
+        }
+        return listaAccesorio;
     }
 
     public DataSet getDatasetCalzados()
