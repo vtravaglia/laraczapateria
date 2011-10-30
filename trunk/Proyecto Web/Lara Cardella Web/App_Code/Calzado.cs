@@ -21,6 +21,7 @@ public class Calzado:ConexionBD
     private int idCalzado;
     private String codigo;
     private String nombre;
+    private int idColeccion;
     private String descripcion;
     private String pathImagenChica;
     private String pathImagenGrande;
@@ -28,12 +29,18 @@ public class Calzado:ConexionBD
     public Calzado()
     {
     }
+    public int IdColeccion
+    {
+        get { return idColeccion; }
+        set { idColeccion = value; }
+    }
+
     public int IdCalzado
     {
         get { return idCalzado; }
         set { idCalzado = value; }
     }
-    
+
     public String Codigo
     {
         get { return codigo; }

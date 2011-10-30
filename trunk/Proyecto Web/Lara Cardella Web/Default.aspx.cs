@@ -23,7 +23,8 @@ public partial class _Default : System.Web.UI.Page
             gestor = new ConexionBD();
 
             //Obtengo la lista de imagenes de los calzados (imagenChica1 : imagenGrande1 , imagenChica2 : imagenGrande2)
-            this.listaCalzados.Value = getListaCalzados();
+            this.listaCalzadosOtoInv.Value = getListaCalzados();
+            this.listaAccesoriosOtoInv.Value = getListaAccesorios();
         }
         catch (CardellaException ex)
         {
@@ -39,5 +40,15 @@ public partial class _Default : System.Web.UI.Page
             listaCalzado += calzado.PathImagenChica+" : "+calzado.PathImagenGrande+",";
         }
         return listaCalzado;
+    }
+
+    private String getListaAccesorios()
+    {
+        String listaAccesorios = "";
+        foreach (Accesorio accesorio in gestor.getAccesorios())
+        {
+            listaAccesorios += accesorio.PathImagenChica + " : " + accesorio.PathImagenGrande + ",";
+        }
+        return listaAccesorios;
     }
 }

@@ -16,9 +16,54 @@ using System.Data.Odbc;
 /// </summary>
 public class Accesorio : ConexionBD
 {
-	public Accesorio()
-	{
-	}
+    private int idAccesorio;
+    private String codigo;
+    private int idColeccion;
+    private String descripcion;
+    private String pathImagenChica;
+    private String pathImagenGrande;
+
+    public Accesorio()
+    {
+    }
+
+    public int IdAccesorio
+    {
+        get { return idAccesorio; }
+        set { idAccesorio = value; }
+    }
+    
+    public String Codigo
+    {
+        get { return codigo; }
+        set { codigo = value; }
+    }
+
+    public int IdColeccion
+    {
+        get { return idColeccion; }
+        set { idColeccion = value; }
+    }
+
+    public String Descripcion
+    {
+        get { return descripcion; }
+        set { descripcion = value; }
+    }
+
+    public String PathImagenChica
+    {
+        get { return pathImagenChica; }
+        set { pathImagenChica = value; }
+    }
+
+    public String PathImagenGrande
+    {
+        get { return pathImagenGrande; }
+        set { pathImagenGrande = value; }
+    }
+
+	
 
     //Obtengo todos los accesorios de base de datos
     public static DataTable getAccesorios()
