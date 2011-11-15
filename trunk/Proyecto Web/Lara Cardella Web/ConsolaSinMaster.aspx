@@ -1,59 +1,106 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ConsolaSinMaster.aspx.cs" Inherits="ConsolaSinMaster" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ConsolaSinMaster.aspx.cs"
+    Inherits="ConsolaSinMaster" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>ABM Calzados</title>
     <link href="css/ABM_Calzados.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        .style1
-        {
-            text-align: left;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
     <div id="middle_general_container">
         <div id="middle_center_container">
-        <h1>Consola Administrativa</h1>
-                <hr />
-                <h3 class="style1">ABM Calzados</h3>
-        
-        <p>Codigo<asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="reqValidCodigo" runat="server" 
-                ControlToValidate="txtCodigo" Display="Dynamic" ErrorMessage="Codigo requerido"></asp:RequiredFieldValidator>
-                <asp:TextBox ID="txtId" runat="server" Enabled="False"></asp:TextBox>
-                </p>
-        <p>Nombre<asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="reqValidNombre" runat="server" 
-                ControlToValidate="txtNombre" Display="Dynamic" ErrorMessage="Nombre requerido"></asp:RequiredFieldValidator>
-                </p>
-        <p>Descripcion<asp:TextBox ID="txtDesc" runat="server"></asp:TextBox></p>
-        <p>Coleccion<asp:DropDownList ID="ddlColeccion" runat="server"></asp:DropDownList></p>
-                <p>Imagen:
-                    <input id="filUpload" type="file" runat="server" onclick="return filUpload_onclick()" />
-                    <asp:Button ID="btnUpload" runat="server" onclick="btnUpload_Click" 
-                        Text="Cargar Imagen" />
-                </p>
-                <p>
-                <asp:Image ID="imgPicture" runat="server" Height="107px" Width="140px" />
-            &nbsp;<asp:Label ID="lblOutput" runat="server" Text="mensaje" ForeColor="Red"></asp:Label>
-                </p>
-                <p><b>Imagenes Cargadas:</b></p>
-                <p>
+            <h1>
+                Consola Administrativa
+            </h1>
+            <hr />
+            <h3>
+                ABM Calzados
+            </h3>
+            </br>
+            <h4>Registro/Modificacion</h4>
+            <div id="middle_center_top">
+                <table id="formTable">
+                    <tr>
+                        <td class="formTable_col1">
+                            <asp:Label ID="lblCodigo" runat="server" Text="Codigo"></asp:Label>
+                        </td>
+                        <td class="formTable_col2">
+                            <asp:TextBox ID="txtCodigo" runat="server" Width="160px"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="reqValidCodigo" runat="server" ControlToValidate="txtCodigo"
+                                Display="Dynamic" ErrorMessage="Codigo requerido"></asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtId" runat="server" Enabled="False" Visible="False"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTable_col1">
+                            <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
+                        </td>
+                        <td class="formTable_col2">
+                            <asp:TextBox ID="txtNombre" runat="server" Width="160px"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="reqValidNombre" runat="server" ControlToValidate="txtNombre"
+                                Display="Dynamic" ErrorMessage="Nombre requerido"></asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTable_col1">
+                            <asp:Label ID="lblDesc" runat="server" Text="Descripcion"></asp:Label>
+                        </td>
+                        <td class="formTable_col2">
+                            <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" Width="328px"></asp:TextBox>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTable_col1">
+                            <asp:Label ID="lblColeccion" runat="server" Text="Coleccion"></asp:Label>
+                        </td>
+                        <td class="formTable_col2">
+                            <asp:DropDownList ID="ddlColeccion" runat="server" Height="20px" Width="130px">
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTable_col1">
+                            <asp:Label ID="lblImagen" runat="server" Text="Imagen:"></asp:Label>
+                        </td>
+                        <td class="formTable_col2">
+                            <input id="filUpload" type="file" runat="server" onclick="return filUpload_onclick()" />
+                            <asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Cargar Imagen" />
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="middle_center_middle">
+                <div class="formLine">
+                    <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
+                </div>
+                <div class="formLine">
+                    <asp:Image ID="imgPicture" runat="server" Height="107px" Width="140px" />
+                </div>
+                <div class="formLine">
+                    <asp:Label ID="lblOutput" runat="server" Text="mensaje" ForeColor="Red"></asp:Label>
+                </div>
+                <div class="formLine">
+                    <asp:Label ID="lblImgsCargadas" runat="server" Text="Imagenes Cargadas:"></asp:Label>
+                </div>
+                <div class="formLine" style="margin-bottom:20px">
                     <asp:Label ID="lblImagenesCargadas" runat="server" Text="imgcargadas"></asp:Label>
-                </p>
-                <p>
-                    &nbsp;</p>
-                <p>
-                    <asp:Button ID="btnGuardar" runat="server" onclick="btnGuardar_Click" Text="Guardar" />
-                </p>
-                <p>
-                    <asp:GridView ID="grillaCalzados" runat="server" AutoGenerateColumns="False" 
-                        AutoGenerateSelectButton="True" CellPadding="4" ForeColor="#333333" 
-                        GridLines="None">
+                </div>
+                <h4>Calzados Registrados</h4>
+                <div id="grillaCalzados">
+                    <asp:GridView ID="grillaCalzados" runat="server" AutoGenerateColumns="False" AutoGenerateSelectButton="True"
+                        CellPadding="4" ForeColor="#333333" GridLines="None">
                         <RowStyle BackColor="#EFF3FB" />
                         <Columns>
                             <asp:BoundField DataField="idCalzado" HeaderText="idCalzado" />
@@ -69,16 +116,14 @@
                         <EditRowStyle BackColor="#2461BF" />
                         <AlternatingRowStyle BackColor="White" />
                     </asp:GridView>
-                </p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
-            <p>&nbsp;<asp:Button ID="btnModificar" runat="server" CausesValidation="False" 
-                    onclick="btnModificar_Click" Text="Modificar" />
-&nbsp;&nbsp;
-                <asp:Button ID="btnEliminar" runat="server" CausesValidation="False" 
-                    Text="Eliminar" />
-            </p>
-        
-        
+                </div>
+                <div class="formLine">
+                    <asp:Button ID="btnModificar" runat="server" CausesValidation="False" OnClick="btnModificar_Click"
+                        Text="Modificar" />
+                    &nbsp;&nbsp;
+                    <asp:Button ID="btnEliminar" runat="server" CausesValidation="False" Text="Eliminar" />
+                </div>
+            </div>
         </div>
     </div>
     </form>

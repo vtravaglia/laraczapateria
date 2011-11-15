@@ -13,6 +13,14 @@ h1{
 	color: #000000;
 	text-align: center;
 }
+h3
+{
+	text-align: left;
+}
+h4
+{
+	text-align: left;
+}
 p{
 	text-align: center;
 }
@@ -37,6 +45,41 @@ p{
 	width: 800px;
 	background-color: #FFF;
 	text-align: center;
+}
+
+#formTable
+{
+	/*text-align: left;
+	margin-top: 5px;
+	float:left;*/
+}
+#middle_center_top
+{
+	float:left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#middle_center_middle
+{
+	float:left;
+}
+.formLine
+{
+	text-align: left;
+	margin-top: 5px;
+}
+.formTable_col1
+{
+	text-align: left;
+}
+.formTable_col2
+{
+	text-align: left;
+}
+#grillaCalzados
+{
+	text-align: center;
+	margin-bottom: 10px;
 }
 
 

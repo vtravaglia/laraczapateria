@@ -32,10 +32,14 @@ public class Coleccion:ConexionBD
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            
+
             cmd.Connection.Close();
 
             return dt;
+        }
+        catch (CardellaException e)
+        {
+            throw e;
         }
         catch (Exception)
         {

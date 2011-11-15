@@ -31,6 +31,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
     private void limpiarCampos()
     {
         txtId.Text = "";
+        txtId.Visible = false;
         txtCodigo.Text = "";
         txtNombre.Text = "";
         txtDesc.Text = "";
@@ -48,9 +49,13 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             ddlColeccion.DataValueField = dt.Columns["idColeccion"].ToString();
             ddlColeccion.DataBind();
         }
+        catch (CardellaException e)
+        {
+            lblOutput.Text = e.Message;
+        }
         catch (Exception er)
         {
-            //lblError.Text = er.Message;
+            lblOutput.Text = er.Message;
         }
     }
 
@@ -63,7 +68,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         }
         catch (Exception er)
         {
-            //lblError.Text = er.Message;
+            lblOutput.Text = er.Message;
         }
     }
 
@@ -253,6 +258,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             //traigo los datos del calzado de la bd
             DataTable dt = Calzado.getCalzadoById(id);
             //cargo los datos grales del calzado
+            txtId.Visible = true;
             txtId.Text = dt.Rows[0][0].ToString();
             txtCodigo.Text = dt.Rows[0][1].ToString();
             txtNombre.Text = dt.Rows[0][2].ToString();
