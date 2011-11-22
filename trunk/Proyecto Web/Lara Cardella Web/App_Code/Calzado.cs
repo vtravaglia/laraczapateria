@@ -232,9 +232,30 @@ public class Calzado:ConexionBD
             }
             return listaImagenes;
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            throw;
+            throw e;
+        }
+    }
+
+    //elimino un calzado de la bd y sus imagenes asociadas
+    public static void deleteCalzado(int idCalzado)
+    {
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("DELETE FROM imagen " +
+                                              "WHERE idCalzado=" + idCalzado.ToString(), ObtenerConexion());
+
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText="DELETE FROM calzado WHERE idCalzado=" + idCalzado.ToString();
+
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
         }
     }
 }
