@@ -25,6 +25,23 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             cargarColecciones();
             cargarCalzados();
             limpiarCampos();
+            actualizarEstadoBotones(false);
+        }
+    }
+
+    private void actualizarEstadoBotones(bool areEnabled)
+    {
+        if (areEnabled)
+        {
+            //el cancelar se activa cuando se hace click en modificar
+            btnEliminar.Enabled = true;
+            btnModificar.Enabled = true;
+        }
+        else
+        {
+            btnCancelar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnModificar.Enabled = false;
         }
     }
 
@@ -132,10 +149,10 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         intThumbHeight = 120;
 
         // If file field is not empty
-        if (filUpload.PostedFile != null)
+        if (btnfilUpload.PostedFile != null)
         {
             // Check file size (must not be 0)
-            HttpPostedFile myFile = filUpload.PostedFile;
+            HttpPostedFile myFile = btnfilUpload.PostedFile;
             int nFileLen = myFile.ContentLength;
             if (nFileLen == 0)
             {
@@ -233,6 +250,8 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
                 // Destroy objects
                 myThumbnail.Dispose();
                 myBitmap.Dispose();
+                //habilito el cancelar por si el usr se arrepiente de guardar
+                btnCancelar.Enabled = true;
             }
             catch (ArgumentException errArgument)
             {
@@ -282,6 +301,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
                     lblImagenesCargadas.Text += img.PathBig.ToString();
                 }
             }
+            btnCancelar.Enabled = true;
         }
         catch (Exception ex)
         {
@@ -306,11 +326,13 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
     }
     protected void grillaCalzados_SelectedIndexChanged(object sender, EventArgs e)
     {
-        btnEliminar.Enabled = true;
+        actualizarEstadoBotones(true);
     }
     protected void btnCancelar_Click(object sender, EventArgs e)
     {
         limpiarCampos();
         txtCodigo.Focus();
+        btnCancelar.Enabled = false;
+        lblOutput.Text = "";
     }
 }
