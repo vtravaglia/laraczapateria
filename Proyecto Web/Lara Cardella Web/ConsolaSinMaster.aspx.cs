@@ -256,7 +256,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             catch (ArgumentException errArgument)
             {
                 // The file wasn't a valid jpg file
-                lblOutput.Text = "The file wasn't a valid jpg file.";
+                lblOutput.Text = "El archivo no es una imagen valida";
                 System.IO.File.Delete(Server.MapPath(sSavePath + sFilename));
             }
         }
