@@ -84,6 +84,8 @@
             <div id="middle_center_middle">
                 <div class="formLine">
                     <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
+                    <asp:Button ID="btnCancelar" class="btnSeparable" runat="server" 
+                        Text="Cancelar" onclick="btnCancelar_Click" />
                 </div>
                 <div class="formLine">
                     <asp:Image ID="imgPicture" runat="server" Height="107px" Width="140px" />
@@ -100,7 +102,8 @@
                 <h4>Calzados Registrados</h4>
                 <div id="grillaCalzados">
                     <asp:GridView ID="grillaCalzados" runat="server" AutoGenerateColumns="False" AutoGenerateSelectButton="True"
-                        CellPadding="4" ForeColor="#333333" GridLines="None">
+                        CellPadding="4" ForeColor="#333333" GridLines="None" Width="778px" 
+                        onselectedindexchanged="grillaCalzados_SelectedIndexChanged">
                         <RowStyle BackColor="#EFF3FB" />
                         <Columns>
                             <asp:BoundField DataField="idCalzado" HeaderText="idCalzado" />
@@ -120,8 +123,9 @@
                 <div class="formLine">
                     <asp:Button ID="btnModificar" runat="server" CausesValidation="False" OnClick="btnModificar_Click"
                         Text="Modificar" />
-                    &nbsp;&nbsp;
-                    <asp:Button ID="btnEliminar" runat="server" CausesValidation="False" Text="Eliminar" />
+                    <asp:Button ID="btnEliminar" class="btnSeparable" runat="server" CausesValidation="False" 
+                        Text="Eliminar" OnClientClick="javascript:return confirm('Esta seguro que desea borrar el calzado?');"
+                        onclick="btnEliminar_Click" />
                 </div>
             </div>
         </div>

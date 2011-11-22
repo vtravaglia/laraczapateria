@@ -288,4 +288,29 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             lblOutput.Text = ex.Message;
         }
     }
+    protected void btnEliminar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int id = Convert.ToInt32(grillaCalzados.SelectedRow.Cells[1].Text);
+            Calzado.deleteCalzado(id);
+            lblOutput.Text = "El Producto fue eliminado con exito";
+            cargarCalzados();
+            limpiarCampos();
+            btnEliminar.Enabled = false;
+        }
+        catch (Exception ex)
+        {
+            lblOutput.Text = ex.Message;
+        }
+    }
+    protected void grillaCalzados_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        btnEliminar.Enabled = true;
+    }
+    protected void btnCancelar_Click(object sender, EventArgs e)
+    {
+        limpiarCampos();
+        txtCodigo.Focus();
+    }
 }
