@@ -5,7 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>ABM Calzados</title>
+    <script type="text/javascript" src="scripts/jquery1.6.2.js"></script>
     <link href="css/ABM_Calzados.css" rel="stylesheet" type="text/css" />
+    <script>
+        $(document).ready(function () {
+            $('input[id^=btn]').css('height','25px');
+        });
+    </script>
+
 </head>
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
@@ -73,7 +80,7 @@
                             <asp:Label ID="lblImagen" runat="server" Text="Imagen:"></asp:Label>
                         </td>
                         <td class="formTable_col2">
-                            <input id="filUpload" type="file" runat="server" onclick="return filUpload_onclick()" />
+                            <input id="btnfilUpload" type="file" runat="server" onclick="return filUpload_onclick()" />
                             <asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Cargar Imagen" />
                         </td>
                         <td>
