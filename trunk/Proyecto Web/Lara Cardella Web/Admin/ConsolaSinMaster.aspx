@@ -5,9 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>ABM Calzados</title>
-    <script type="text/javascript" src="scripts/jquery1.6.2.js"></script>
-    <link href="css/ABM_Calzados.css" rel="stylesheet" type="text/css" />
-    <script>
+    <script type="text/javascript" src="../scripts/jquery1.6.2.js"></script>
+    <link href="../css/ABM_Calzados.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
         $(document).ready(function () {
             $('input[id^=btn]').css('height','25px');
         });
@@ -17,6 +17,12 @@
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
     <div id="middle_general_container">
+        <div id="loginInfo">
+            <asp:Label ID="lblUsrLogueado" CssClass="loginInfo_items" runat="server" Text="Bienvenido"></asp:Label>
+            <asp:Button ID="btnCerrarSesion" CssClass="loginInfo_items" runat="server" 
+                Text="Cerrar Sesion" CausesValidation="False" onclick="btnCerrarSesion_Click" 
+                Width="99px" />
+        </div>
         <div id="middle_center_container">
             <h1>
                 Consola Administrativa
