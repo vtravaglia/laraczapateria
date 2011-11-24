@@ -27,7 +27,7 @@ p{
 
 #container{
 	width: 900px;
-	background-color: #a82010;
+	/*background-color: #a82010;*/
 	
 }
 
@@ -41,6 +41,18 @@ p{
 	
 }
 
+#loginInfo
+{
+	width: 800px;
+	background-color: #FFF;
+	text-align: right;
+}
+
+.loginInfo_items
+{
+	height:25px;
+	padding-left:10px;
+}
 #middle_center_container{
 	width: 800px;
 	background-color: #FFF;

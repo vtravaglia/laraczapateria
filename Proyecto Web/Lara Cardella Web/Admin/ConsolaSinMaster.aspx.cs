@@ -20,12 +20,16 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
+        if (Page.User.Identity.IsAuthenticated)
         {
-            cargarColecciones();
-            cargarCalzados();
-            limpiarCampos();
-            actualizarEstadoBotones(false);
+            lblUsrLogueado.Text = HttpContext.Current.User.Identity.Name;
+            if (!Page.IsPostBack)
+            {
+                cargarColecciones();
+                cargarCalzados();
+                limpiarCampos();
+                actualizarEstadoBotones(false);
+            }
         }
     }
 
@@ -196,6 +200,8 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
                 }
             }
 
+            sSavePath="../"+sSavePath;
+
             // Save the stream to disk
             System.IO.FileStream newFile
                     = new System.IO.FileStream(Server.MapPath(sSavePath + sFilename),
@@ -334,5 +340,13 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         txtCodigo.Focus();
         btnCancelar.Enabled = false;
         lblOutput.Text = "";
+    }
+    protected void btnCerrarSesion_Click(object sender, EventArgs e)
+    {
+        // Eliminar la cookie
+        Context.Response.Cookies[".laracardella"].Expires = DateTime.Now;
+        // Terminar la sesion
+        FormsAuthentication.SignOut();
+        Response.Redirect("../Default.aspx");
     }
 }
