@@ -324,6 +324,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             cargarCalzados();
             limpiarCampos();
             btnEliminar.Enabled = false;
+            Session["imgPathsToSaveInBD"] = new List<Imagen>();
         }
         catch (Exception ex)
         {
@@ -340,6 +341,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         txtCodigo.Focus();
         btnCancelar.Enabled = false;
         lblOutput.Text = "";
+        Session["imgPathsToSaveInBD"] = new List<Imagen>();
     }
     protected void btnCerrarSesion_Click(object sender, EventArgs e)
     {
