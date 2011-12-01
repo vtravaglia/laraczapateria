@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using System.Data.Odbc;
 using System.Drawing;
 using System.Collections.Generic;
+using System.IO;
 
 public partial class ConsolaSinMaster : System.Web.UI.Page
 {
@@ -318,13 +319,23 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
     {
         try
         {
+            //obtengo solo el idCalzado de la grilla para borrarlo de la BD
             int id = Convert.ToInt32(grillaCalzados.SelectedRow.Cells[1].Text);
+            //Obtengo todas las imagenes (grandes y chicas) de ese calzado antes de borrarlo de la BD
+            List<Imagen> listaImagenes = Calzado.getImagenesCalzado(id);
             Calzado.deleteCalzado(id);
+            //luego que borre el calzado de la BD tengo que borrar las imagenes que estan en el server
+            eliminarImagenesDelServer(listaImagenes);
+
             lblOutput.Text = "El Producto fue eliminado con exito";
             cargarCalzados();
             limpiarCampos();
             btnEliminar.Enabled = false;
             Session["imgPathsToSaveInBD"] = new List<Imagen>();
+        }
+        catch (IOException exc)
+        {
+            lblOutput.Text = "No se pudieron borrar las imagenes en el servidor";
         }
         catch (Exception ex)
         {
@@ -351,4 +362,31 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         FormsAuthentication.SignOut();
         Response.Redirect("../Default.aspx");
     }
+
+    private void eliminarImagenesDelServer(List<Imagen> imagenes)
+    {
+        foreach (Imagen img in imagenes)
+        {
+            try
+            {
+                if (img.PathBig.Equals("")==false && img.PathBig.Length>0)
+                {
+                    //Antes de borrarla debo validar que no haya otro calzado que este usando la misma imagen grande
+                    if (!Calzado.imagenEnUsoPorOtroCalzado(img.PathBig))
+                    {
+                        System.IO.File.Delete(Server.MapPath(img.PathBig));
+                    }
+                }
+                if (img.PathSmall.Equals("") == false && img.PathSmall.Length > 0)
+                {
+                    System.IO.File.Delete(Server.MapPath(img.PathSmall));
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+    }
+
 }
