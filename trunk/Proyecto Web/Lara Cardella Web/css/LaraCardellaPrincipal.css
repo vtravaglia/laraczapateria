@@ -108,16 +108,14 @@
     border: 1px solid #949191;
 }
 
-#mycarousel li a img
-{
-	z-index:2; /*z-index para poder solapar divs*/
-	position:absolute;
-	filter:alpha(opacity=100); 
-	-moz-opacity: 1; 
-	opacity: 1; 
-}
-
-#mycarousel2 li a img
+#mycarouselCalPriVer1 li a img,
+#mycarouselCalPriVer2 li a img,
+#mycarouselCalOtoInv1 li a img,
+#mycarouselCalOtoInv2 li a img,
+#mycarouselAccPriVer1 li a img,
+#mycarouselAccPriVer2 li a img,
+#mycarouselAccOtoInv1 li a img,
+#mycarouselAccOtoInv2 li a img
 {
 	z-index:2; /*z-index para poder solapar divs*/
 	position:absolute;
@@ -152,7 +150,10 @@
 }
 
 /**CATALOGO*/
-#catalogo
+#catalogoCalPriVer,
+#catalogoCalOtoInv,
+#catalogoAccPriVer,
+#catalogoAccOtoInv
 {
 	display:none;
 	z-index:-1;

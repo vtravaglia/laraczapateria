@@ -33,18 +33,56 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="contenidoDerPlaceHolder" Runat="Server">
 
 
-    <div id="catalogo" class="transparent">  
+    <div id="catalogoCalPriVer" class="transparent">  
         <div style="position: relative; z-index: 10;">
             <div style="	background-color: #fff; position:absolute; z-index:-1; top:0; left:0; right:0; bottom:0; opacity:0.5;">
             </div>
             <div class="bordeCatalogo">
-                <ul id="mycarousel" class="jcarousel-skin-tango">
+                <ul id="mycarouselCalPriVer1" class="jcarousel-skin-tango">
                 </ul>
-                <ul id="mycarousel2" class="jcarousel-skin-tango">
+                <ul id="mycarouselCalPriVer2" class="jcarousel-skin-tango">
                 </ul>
             </div>
         </div> 
     </div>
     
+    <div id="catalogoCalOtoInv" class="transparent">  
+        <div style="position: relative; z-index: 10;">
+            <div style="	background-color: #fff; position:absolute; z-index:-1; top:0; left:0; right:0; bottom:0; opacity:0.5;">
+            </div>
+            <div class="bordeCatalogo">
+                <ul id="mycarouselCalOtoInv1" class="jcarousel-skin-tango">
+                </ul>
+                <ul id="mycarouselCalOtoInv2" class="jcarousel-skin-tango">
+                </ul>
+            </div>
+        </div> 
+    </div>
     
+    <div id="catalogoAccPriVer" class="transparent">  
+        <div style="position: relative; z-index: 10;">
+            <div style="	background-color: #fff; position:absolute; z-index:-1; top:0; left:0; right:0; bottom:0; opacity:0.5;">
+            </div>
+            <div class="bordeCatalogo">
+                <ul id="mycarouselAccPriVer1" class="jcarousel-skin-tango">
+                </ul>
+                <ul id="mycarouselAccPriVer2" class="jcarousel-skin-tango">
+                </ul>
+            </div>
+        </div> 
+    </div>
+    
+    <div id="catalogoAccOtoInv" class="transparent">  
+        <div style="position: relative; z-index: 10;">
+            <div style="	background-color: #fff; position:absolute; z-index:-1; top:0; left:0; right:0; bottom:0; opacity:0.5;">
+            </div>
+            <div class="bordeCatalogo">
+                <ul id="mycarouselAccOtoInv1" class="jcarousel-skin-tango">
+                </ul>
+                <ul id="mycarouselAccOtoInv2" class="jcarousel-skin-tango">
+                </ul>
+            </div>
+        </div> 
+    </div>
+
 </asp:Content>
