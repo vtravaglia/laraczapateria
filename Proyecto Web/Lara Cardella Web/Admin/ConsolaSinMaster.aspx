@@ -40,12 +40,13 @@
                             <asp:Label ID="lblCodigo" runat="server" Text="Codigo"></asp:Label>
                         </td>
                         <td class="formTable_col2">
-                            <asp:TextBox ID="txtCodigo" runat="server" Width="160px" Height="25px"></asp:TextBox>
+                            <asp:TextBox ID="txtCodigo" runat="server" Width="160px" Height="20px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="reqValidCodigo" runat="server" ControlToValidate="txtCodigo"
                                 Display="Dynamic" ErrorMessage="Codigo requerido"></asp:RequiredFieldValidator>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtId" runat="server" Enabled="False" Visible="False"></asp:TextBox>
+                            <asp:TextBox ID="txtId" runat="server" Enabled="False" Visible="False" 
+                                Height="20px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -53,7 +54,7 @@
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
                         </td>
                         <td class="formTable_col2">
-                            <asp:TextBox ID="txtNombre" runat="server" Width="160px" Height="25px"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" Width="160px" Height="20px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="reqValidNombre" runat="server" ControlToValidate="txtNombre"
                                 Display="Dynamic" ErrorMessage="Nombre requerido"></asp:RequiredFieldValidator>
                         </td>

@@ -1,7 +1,6 @@
 *{
-	padding:0px;
+	/*padding:0px;*/
 	margin:0 auto;
-	text-align: center;
 }
 
 body {
@@ -51,7 +50,7 @@ p{
 .loginInfo_items
 {
 	height:25px;
-	padding-left:10px;
+	/*padding-left:10px;*/
 }
 #middle_center_container{
 	width: 800px;
@@ -62,14 +61,15 @@ p{
 #formTable
 {
 	/*text-align: left;
-	margin-top: 5px;
-	float:left;*/
+	margin-top: 5px;*/
+	float:left;
 }
 #middle_center_top
 {
 	float:left;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	width:800px;
 }
 #middle_center_middle
 {
