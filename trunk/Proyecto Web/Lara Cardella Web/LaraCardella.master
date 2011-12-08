@@ -13,6 +13,8 @@
     <link href="plugins/jcarousel/style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="scripts/scriptsCatalogo.js"></script>
     <script type="text/javascript" src="yoxview/yoxview-init.js"></script>
+    <script type="text/javascript" src="plugins/thickbox/thickbox.js"></script>
+    <link href="plugins/thickbox/thickboxStyle.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

@@ -22,12 +22,12 @@
     var cantidadPorFila=parseInt(arrayZapatosOtoInv.length/2);
     for (var i=0; i<cantidadPorFila; i++) {
         var arrayImagen=arrayZapatosOtoInv[i].split(":");
-        $("#mycarouselCalOtoInv1").append( '<li ><a class="yoxview" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'" /></a></li>' ) ;
+        $("#mycarouselCalOtoInv1").append( '<li ><a title="'+arrayImagen[2]+'" class="thickbox" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'" /></a></li>' ) ;
     }                    
     //A la fila 2 del catalogo 
     for (var i=cantidadPorFila; i<arrayZapatosOtoInv.length; i++) {
         var arrayImagen=arrayZapatosOtoInv[i].split(":");
-        $("#mycarouselCalOtoInv2").append( '<li ><a class="yoxview" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'"/></a></li>' ) ;
+        $("#mycarouselCalOtoInv2").append( '<li ><a title="'+arrayImagen[2]+'" class="thickbox" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'"/></a></li>' ) ;
     }
      
     //CATALOGO ZAPATOS  OTO-INV       
@@ -36,12 +36,12 @@
     var cantidadPorFila=parseInt((arrayAccesoriosOtoInv.length)/2);
     for (var i=0; i<cantidadPorFila; i++) {
         var arrayImagen=arrayAccesoriosOtoInv[i].split(":");
-        $("#mycarouselAccPriVer1").append( '<li ><a class="yoxview" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'" /></a></li>' ) ;
+        $("#mycarouselAccPriVer1").append( '<li ><a title="'+arrayImagen[2]+'" class="thickbox" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'" /></a></li>' ) ;
     }                    
     //A la fila 2 del catalogo 
     for (var i=cantidadPorFila; i<arrayAccesoriosOtoInv.length; i++) {
         var arrayImagen=arrayAccesoriosOtoInv[i].split(":");
-        $("#mycarouselAccPriVer2").append( '<li ><a class="yoxview" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'"/></a></li>' ) ;
+        $("#mycarouselAccPriVer2").append( '<li ><a title="'+arrayImagen[2]+'" class="thickbox" href="'+arrayImagen[1]+'"><img src="'+arrayImagen[0]+'"/></a></li>' ) ;
     }
         
       
