@@ -8,6 +8,11 @@
     <input id="listaAccesoriosOtoInv" type="hidden" runat="Server"/> 
     <input id="listaAccesoriosPriVer" type="hidden" runat="Server"/> 
     
+    <input id="cantZapOtoInv" type="hidden" runat="Server"/> 
+    <input id="cantZapPriVer" type="hidden" runat="Server"/> 
+    <input id="cantAccOtoInv" type="hidden" runat="Server"/> 
+    <input id="cantAccPriVer" type="hidden" runat="Server"/> 
+    
     <p id="menuCalzados" class="tituloMenuCatalogo">
         <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
         <asp:Label ID="lblCalzados" runat="server" Text="Calzados"></asp:Label>

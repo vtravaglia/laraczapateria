@@ -7,6 +7,7 @@
     <title>Página sin título</title>
     <script type="text/javascript" src="scripts/jquery1.6.2.js"></script>
     <link href="css/LaraCardellaPrincipal.css" rel="stylesheet" type="text/css" />
+    <link href="css/SimplePage.css" rel="stylesheet" type="text/css" />
     <link href="yoxview/yoxview.css" rel="stylesheet" type="text/css" />    
     <script src="plugins/jcarousel/lib/jquery.jcarousel.min.js" type="text/javascript"></script>
     <link href="plugins/jcarousel/skins/tango/skin.css" rel="stylesheet" type="text/css" />
@@ -23,12 +24,19 @@
     <div id="cabecera">  
     </div>
     <div id="menu">
-        <div id="menuHome">
-        </div>
-        <div id="menuQuienesSomos">
-        </div>
-        <div id="menuMisionVision">
-        </div>
+        <a href="Default.aspx" runat="server">
+            <div id="menuHome">
+            </div>
+        </a>
+        <a href="QuienesSomos.aspx" runat="server">
+            <div id="menuQuienesSomos">
+            </div>
+        </a>
+        <a href="MisionVision.aspx" runat="server">
+            <div id="menuMisionVision">
+            </div>
+        </a>
+        
         <div id="menuContacto">
         </div>
         <div id="menuResto">
