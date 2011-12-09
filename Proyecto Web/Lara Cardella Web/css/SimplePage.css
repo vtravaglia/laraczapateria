@@ -1,10 +1,16 @@
 ﻿#simplePageContenidoIzq
 {
-	-moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-	border-radius: 10px;
-    border: 1px solid #949191;
     background-color: #fff;  
     opacity:0.5;
     background:url('../images/lc_body.jpg') no-repeat right center;
+    width:400px;
+    height:300px;
+    margin-top:10px;
+}
+
+#simplePageContenidoIzq div
+{
+    margin-left:25px;
+    width:350px;
+    text-align:justify;
 }
