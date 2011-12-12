@@ -47,6 +47,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             btnCancelar.Enabled = false;
             btnEliminar.Enabled = false;
             btnModificar.Enabled = false;
+            btnEliminarImagen.Enabled = false;
         }
     }
 
@@ -300,14 +301,20 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             }
             //cargo las imagenes del calzado en la variable session
             List<Imagen> listaImgs = Calzado.getImagenesCalzado(id);
-            Session["imgPathsToSaveInBD"] = listaImgs;
+
             if (listaImgs != null)
             {
-                foreach (Imagen img in listaImgs)
-                {
-                    lblImagenesCargadas.Text += img.PathBig.ToString();
-                }
+                Session["imgPathsToSaveInBD"] = listaImgs;
             }
+            else
+            {
+                lblOutput.Text = "Error al intentar obtener las imagenes";
+                return;
+            }
+            //cargo las imagenes chicas en la grilla
+            cargarImagenesCalzado(id);
+            grillaImagenes.Visible = true;
+
             btnCancelar.Enabled = true;
         }
         catch (Exception ex)
@@ -315,6 +322,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
             lblOutput.Text = ex.Message;
         }
     }
+
     protected void btnEliminar_Click(object sender, EventArgs e)
     {
         try
@@ -363,6 +371,13 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         Response.Redirect("../Default.aspx");
     }
 
+    private void eliminarImagenesDelServer(Imagen img)
+    {
+        List<Imagen> listaImagenes = new List<Imagen>();
+        listaImagenes.Add(img);
+        eliminarImagenesDelServer(listaImagenes);
+    }
+
     private void eliminarImagenesDelServer(List<Imagen> imagenes)
     {
         foreach (Imagen img in imagenes)
@@ -389,4 +404,58 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         }
     }
 
+    private void cargarImagenesCalzado(int id)
+    {
+        try
+        {
+            grillaImagenes.DataSource = Calzado.getPathChicaImagenesCalzado(id);
+            grillaImagenes.DataBind();
+        }
+        catch (Exception e)
+        {   
+            throw e;
+        }
+    }
+
+    protected void btnEliminarImagen_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //obtengo el idImagen de la grilla para borrarla de la BD
+            int idImg = Convert.ToInt32(grillaImagenes.SelectedRow.Cells[1].Text);
+            Imagen imgToDelete = Imagen.getImagen(idImg);
+
+            //tengo que borrar la imagen de la bd
+            Imagen.deleteImagen(idImg);
+
+            //luego que borre la imagen de la BD tengo que borrarlas del server
+            eliminarImagenesDelServer(imgToDelete);
+
+            //por ultimo borro la imagen de la variable de session
+            pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
+            foreach (Imagen img in pathImgsToSaveInBD)
+            {
+                if (img.IdImagen == idImg)
+                {
+                    pathImgsToSaveInBD.Remove(img);
+                    break;
+                }
+            }
+            //obtengo solo el idCalzado de la grilla para borrarlo de la BD
+            int idCal = Convert.ToInt32(grillaCalzados.SelectedRow.Cells[1].Text);
+            cargarImagenesCalzado(idCal);
+
+            lblOutput.Text = "La imagen fue eliminada con exito";
+            
+            btnEliminarImagen.Enabled = false;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void grillaImagenes_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        btnEliminarImagen.Enabled = true;
+    }
 }

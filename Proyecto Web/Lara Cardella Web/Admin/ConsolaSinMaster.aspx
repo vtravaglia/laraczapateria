@@ -112,6 +112,25 @@
                 </div>
                 <div class="formLine" style="margin-bottom:20px">
                     <asp:Label ID="lblImagenesCargadas" runat="server" Text="imgcargadas"></asp:Label>
+                    <asp:GridView ID="grillaImagenes" runat="server" AutoGenerateColumns="False" 
+                        AutoGenerateSelectButton="True" CellPadding="4" ForeColor="#333333" 
+                        GridLines="None" onselectedindexchanged="grillaImagenes_SelectedIndexChanged" 
+                        Visible="False">
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <Columns>
+                            <asp:BoundField DataField="idImagen" HeaderText="idImagen" />
+                            <asp:ImageField DataImageUrlField="pathChica" HeaderText="Imagen">
+                            </asp:ImageField>
+                        </Columns>
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <EditRowStyle BackColor="#999999" />
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                    </asp:GridView>
+                    <asp:Button ID="btnEliminarImagen" runat="server" 
+                        onclick="btnEliminarImagen_Click" Text="Eliminar Imagen" />
                 </div>
                 <h4>Calzados Registrados</h4>
                 <div id="grillaCalzados">

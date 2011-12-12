@@ -211,7 +211,7 @@ public class Calzado:ConexionBD
     {
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT pathGrande, pathChica " +
+            OdbcCommand cmd = new OdbcCommand("SELECT pathGrande, pathChica, idImagen " +
                                               "FROM imagen " +
                                               "WHERE idCalzado=" + idCalzado.ToString(), ObtenerConexion());
 
@@ -228,6 +228,7 @@ public class Calzado:ConexionBD
                 img = new Imagen();
                 img.PathBig = dt.Rows[i]["pathGrande"].ToString();
                 img.PathSmall = dt.Rows[i]["pathChica"].ToString();
+                img.IdImagen = Convert.ToInt32(dt.Rows[i]["idImagen"].ToString());
                 listaImagenes.Add(img);
             }
             return listaImagenes;
@@ -279,6 +280,32 @@ public class Calzado:ConexionBD
         catch (Exception e)
         {
             throw e;
+        }
+    }
+
+    /**
+     * Obtengo los path de las imagenes chicas para cargar las imagenes en la grilla
+     * y permitir su eliminacion.
+     */
+    public static object getPathChicaImagenesCalzado(int idCalzado)
+    {
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT idImagen, pathChica " +
+                                              "FROM Imagen " +
+                                              "WHERE idCalzado =" + idCalzado.ToString(), ObtenerConexion());
+
+            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cmd.Connection.Close();
+
+            return dt;
+        }
+        catch (Exception)
+        {
+            throw;
         }
     }
 }
