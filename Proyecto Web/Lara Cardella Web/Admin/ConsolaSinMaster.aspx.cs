@@ -60,6 +60,8 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         txtDesc.Text = "";
         lblImagenesCargadas.Text = "";
         imgPicture.ImageUrl = null;
+        grillaImagenes.DataSource = null;
+        grillaImagenes.Visible = false;
     }
 
     private void cargarColecciones()
@@ -361,6 +363,8 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         btnCancelar.Enabled = false;
         lblOutput.Text = "";
         Session["imgPathsToSaveInBD"] = new List<Imagen>();
+        grillaImagenes.DataSource = null;
+        grillaImagenes.Visible = false;
     }
     protected void btnCerrarSesion_Click(object sender, EventArgs e)
     {
