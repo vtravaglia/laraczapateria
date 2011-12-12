@@ -9,14 +9,22 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.Data.Odbc;
 
 /// <summary>
 /// Descripción breve de Imagen
 /// </summary>
-public class Imagen
+public class Imagen : ConexionBD
 {
     private String pathBig;
     private String pathSmall;
+    private int idImagen;
+
+    public int IdImagen
+    {
+        get { return idImagen; }
+        set { idImagen = value; }
+    }
 
     public Imagen()
     {
@@ -32,5 +40,49 @@ public class Imagen
     {
         get { return pathBig; }
         set { pathBig = value; }
+    }
+
+    public static void deleteImagen(int idImg)
+    {
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("DELETE FROM imagen " +
+                                              "WHERE idImagen=" + idImg.ToString(), ObtenerConexion());
+
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+
+    //Obtengo una imagen de base de datos segun su id
+    public static Imagen getImagen(int idImg)
+    {
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT pathGrande, pathChica, idImagen " +
+                                              "FROM imagen " +
+                                              "WHERE idImagen=" + idImg.ToString(), ObtenerConexion());
+
+            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            cmd.Connection.Close();
+            Imagen imagenRet = new Imagen();
+
+            imagenRet.PathBig = dt.Rows[0]["pathGrande"].ToString();
+            imagenRet.PathSmall = dt.Rows[0]["pathChica"].ToString();
+            imagenRet.IdImagen = Convert.ToInt32(dt.Rows[0]["idImagen"].ToString());
+
+            return imagenRet;
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
     }
 }
