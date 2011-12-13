@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ConsolaTemplate.master.cs" Inherits="Admin_ConsolaTemplate" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <script type="text/javascript" src="../scripts/jquery1.6.2.js"></script>
+    <link href="../css/ConsolaTemplate.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[id^=btn]').css('height','25px');
+        });
+    </script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title>Lara Cardella</title>
+</head>
+<body>
+    <form id="form1" runat="server" enctype="multipart/form-data">
+    <div id="general_container">
+        <div id="top_container">
+            <div id="loginInfo">
+                <asp:Label ID="lblUsrLogueado" runat="server" Text="Bienvenido"></asp:Label>
+                <asp:Button ID="btnCerrarSesion" runat="server" 
+                    Text="Cerrar Sesion" CausesValidation="False" onclick="btnCerrarSesion_Click" 
+                    Width="99px" />
+            </div>
+            <div id="menuLinks">
+                <asp:HyperLink ID="hlaccesorios" runat="server"
+                    NavigateUrl="~/Admin/ConsolaAccesorios.aspx">Accesorios</asp:HyperLink>
+                    |
+                <asp:HyperLink ID="hlCalzados" runat="server" CssClass="leftSpace10px"
+                    NavigateUrl="~/Admin/ConsolaCalzados.aspx">Calzados</asp:HyperLink>            
+            </div>
+        </div>
+        <div id="middle_container">
+            <div id="middle_container_top">
+                <h1>
+                    Consola Administrativa
+                </h1>
+                <hr />
+                <asp:ContentPlaceHolder id="subTitle_container" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="middle_container_center">
+                <div id="formulario">
+                    <h4>Registro/Modificacion</h4>
+                    <asp:ContentPlaceHolder id="formulario_container" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div id="imagenesCargadas">
+                    <asp:ContentPlaceHolder id="imagenesCargadas_container" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="middle_container_bottom">
+                <div id="grillaObjetos">
+                    <asp:ContentPlaceHolder id="grillaObjetos_container" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div id="bottom_container">
+            <div id="piePagina">
+                <hr />
+                <span>Copyrigth © 2011 - www.laracardella.com.ar - Todos 
+                los derechos reservados</span>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

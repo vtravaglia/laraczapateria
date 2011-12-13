@@ -85,4 +85,28 @@ public class Imagen : ConexionBD
             throw e;
         }
     }
+
+    //Chequear que no haya misma imagen en uso por otro producto (calzado o accesorio)
+    public static bool imagenEnUsoPorOtroProducto(string path)
+    {
+        bool enUso = false;
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT count(pathGrande) FROM imagen " +
+                                              "WHERE pathGrande = '" + path + "'", ObtenerConexion());
+
+            int resultado = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Connection.Close();
+
+            if (resultado > 0)
+            {
+                enUso = true;
+            }
+            return enUso;
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
 }

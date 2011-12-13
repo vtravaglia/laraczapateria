@@ -182,7 +182,7 @@ public class Calzado:ConexionBD
             String sentenciaImg;
             foreach (Imagen img in pathsImgList)
             {
-                sentenciaImg = "delete from imagen where idcalzado=" + id.ToString();
+                sentenciaImg = "delete from imagen where idCalzado=" + id.ToString();
                 cmd = new OdbcCommand(sentenciaImg, conexion);
                 cmd.ExecuteNonQuery();
             }
@@ -253,29 +253,6 @@ public class Calzado:ConexionBD
 
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
-        }
-        catch (Exception e)
-        {
-            throw e;
-        }
-    }
-
-    public static bool imagenEnUsoPorOtroCalzado(string path)
-    {
-        bool enUso = false;
-        try
-        {
-            OdbcCommand cmd = new OdbcCommand("SELECT count(pathGrande) FROM imagen " +
-                                              "WHERE pathGrande = '" + path +"'", ObtenerConexion());
-
-            int resultado = Convert.ToInt32(cmd.ExecuteScalar());
-            cmd.Connection.Close();
-
-            if (resultado>0)
-            {
-                enUso = true;
-            }
-            return enUso;
         }
         catch (Exception e)
         {
