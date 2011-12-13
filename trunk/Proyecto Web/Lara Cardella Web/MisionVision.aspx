@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SimplePage.master" AutoEventWireup="true" CodeFile="MisionVision.aspx.cs" Inherits="MisionVision" Title="Página sin título" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SimplePage.master" AutoEventWireup="true" CodeFile="MisionVision.aspx.cs" Inherits="MisionVision" Title="Mision Vision - Lara Cardella" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contenidoDerSimplePage" Runat="Server">
     <div>

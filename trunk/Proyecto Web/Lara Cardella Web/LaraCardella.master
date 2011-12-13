@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Página sin título</title>
+    <link rel="SHORTCUT ICON" href="images/favicon.ico" />
     <script type="text/javascript" src="scripts/jquery1.6.2.js"></script>
     <link href="css/LaraCardellaPrincipal.css" rel="stylesheet" type="text/css" />
     <link href="css/SimplePage.css" rel="stylesheet" type="text/css" />
@@ -37,8 +38,10 @@
             </div>
         </a>
         
+        <a href="Contacto.aspx" runat="server">
         <div id="menuContacto">
         </div>
+        </a>
         <div id="menuResto">
         </div>
     </div>
