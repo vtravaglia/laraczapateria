@@ -23,7 +23,6 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
     {
         if (Page.User.Identity.IsAuthenticated)
         {
-            lblUsrLogueado.Text = HttpContext.Current.User.Identity.Name;
             if (!Page.IsPostBack)
             {
                 cargarColecciones();
@@ -151,10 +150,10 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
         int intThumbHeight;
 
         // Set constant values
-        sSavePath = "images/imagenesZapatos/";
+        sSavePath = "images/calzados/";
         sThumbExtension = "_thumb";
-        intThumbWidth = 160;
-        intThumbHeight = 120;
+        intThumbWidth = 140;
+        intThumbHeight = 107;
 
         // If file field is not empty
         if (btnfilUpload.PostedFile != null)
@@ -368,11 +367,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
     }
     protected void btnCerrarSesion_Click(object sender, EventArgs e)
     {
-        // Eliminar la cookie
-        Context.Response.Cookies[".laracardella"].Expires = DateTime.Now;
-        // Terminar la sesion
-        FormsAuthentication.SignOut();
-        Response.Redirect("../Default.aspx");
+        //movido!
     }
 
     private void eliminarImagenesDelServer(Imagen img)
@@ -391,7 +386,7 @@ public partial class ConsolaSinMaster : System.Web.UI.Page
                 if (img.PathBig.Equals("")==false && img.PathBig.Length>0)
                 {
                     //Antes de borrarla debo validar que no haya otro calzado que este usando la misma imagen grande
-                    if (!Calzado.imagenEnUsoPorOtroCalzado(img.PathBig))
+                    if (!Imagen.imagenEnUsoPorOtroProducto(img.PathBig))
                     {
                         System.IO.File.Delete(Server.MapPath(img.PathBig));
                     }

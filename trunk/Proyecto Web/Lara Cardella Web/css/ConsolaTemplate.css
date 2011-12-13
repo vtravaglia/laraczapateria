@@ -1,0 +1,164 @@
+﻿*{
+	margin:0 auto;
+}
+
+body {
+    background-color: #fff;
+    width: 900px;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+}
+
+h1{
+	color: #000000;
+	text-align: center;
+}
+h3
+{
+	text-align: left;
+}
+
+#general_container{
+	width: 900px;
+	margin-top:35px;
+}
+/* Top Container - begin */
+#top_container{
+	height: 50px;
+}
+
+#loginInfo
+{
+	text-align: right;
+}
+
+#menuLinks
+{
+	text-align: left;
+}
+/* Top Container - end */
+
+/* Middle Container - begin */
+#middle_container{
+	text-align: center;
+}
+
+#middle_container_top{
+}
+
+#middle_container_center
+{
+	width:900px;
+	height:350px;
+	margin-top:10px;
+	text-align:left;
+}
+#formulario
+{
+	width:480px;
+	float:left;
+	height:350px;
+}
+#formularioTable
+{
+	float:left;
+	margin-top:5px;
+	margin-bottom:5px;
+	width: 480px;
+}
+#mensajeTable
+{
+	float:left;
+	margin-top:15px;
+	margin-bottom:5px;
+	width: 480px;
+}
+#imagenesCargadas
+{
+	width:420px;
+	float:right;
+	height:350px;
+}
+#imagenesCargadasTable
+{
+	width:420px;
+	float:left;
+}
+#middle_container_bottom
+{
+	text-align:left;
+}
+/* Middle Container - end */
+
+/* Bottom Container - begin */
+#bottom_container{
+}
+#piePagina{
+	text-align:center;
+	margin-top:20px;
+}
+/* Bottom Container - end */
+
+.grillaProductos
+{
+	margin-bottom:10px;
+	margin-top:5px;
+}
+
+/*
+#formTable
+{
+	float:left;
+}
+#middle_center_top
+{
+	float:left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width:800px;
+}
+#middle_center_middle
+{
+	float:left;
+}
+.formLine
+{
+	text-align: left;
+	margin-top: 5px;
+}
+.formTable_col1
+{
+	text-align: left;
+}
+.formTable_col2
+{
+	text-align: left;
+}
+#grillaCalzados
+{
+	text-align: center;
+	margin-bottom: 10px;
+}
+.btnSeparable
+{
+	margin-left:10px;
+}
+.leftSpace10px
+{
+	margin-left:10px;
+}
+
+#botttom_container{
+	background-color: #a82010;
+	text-align: center;
+	color:#FFFFFF;
+	font-size: 14px;
+	
+}
+div#botttom_container a {
+    color: #C0C0C0;
+    text-decoration: none;
+}
+
+*/

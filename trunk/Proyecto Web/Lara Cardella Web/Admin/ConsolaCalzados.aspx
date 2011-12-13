@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ConsolaSinMaster.aspx.cs"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ConsolaCalzados.aspx.cs"
     Inherits="ConsolaSinMaster" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>ABM Calzados</title>
+    <title>Consola Calzados</title>
     <script type="text/javascript" src="../scripts/jquery1.6.2.js"></script>
     <link href="../css/ABM_Calzados.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
@@ -22,6 +22,15 @@
             <asp:Button ID="btnCerrarSesion" CssClass="loginInfo_items" runat="server" 
                 Text="Cerrar Sesion" CausesValidation="False" onclick="btnCerrarSesion_Click" 
                 Width="99px" />
+        </div>
+        <div id="menuLinks">
+            
+            <asp:HyperLink ID="hlaccesorios" runat="server" 
+                NavigateUrl="~/Admin/ConsolaAccesorios.aspx">Accesorios</asp:HyperLink>
+&nbsp;|
+            <asp:HyperLink ID="hlCalzados" runat="server" 
+                NavigateUrl="~/Admin/ConsolaCalzados.aspx">Calzados</asp:HyperLink>
+            
         </div>
         <div id="middle_center_container">
             <h1>
