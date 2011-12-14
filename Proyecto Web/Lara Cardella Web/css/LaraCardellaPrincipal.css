@@ -18,7 +18,7 @@
 {
 	width:900px;
 	height:166px;
-	background: url('../images/lc_cabecera.jpg') no-repeat right center;
+	background: url('../images/cabecera2.jpg') no-repeat right center;
 	margin:auto; /*debe estar para que quede centrada*/
 }
 
@@ -32,7 +32,7 @@
 
 #menuHome
 {
-	background:url('../images/lc_menuHome.jpg') no-repeat right center;
+	background:url('../images/menuHome2.jpg') no-repeat right center;
 	width:91px;
 	height:50px;
 	margin:auto;
@@ -40,7 +40,7 @@
 }
 #menuQuienesSomos
 {
-	background:url('../images/lc_menuQuienesSomos.jpg') no-repeat right center;
+	background:url('../images/menuQuienesSomos2.jpg') no-repeat right center;
 	width:162px;
 	height:50px;
 	margin:auto;
@@ -48,7 +48,7 @@
 }
 #menuMisionVision
 {
-	background:url('../images/lc_menuMisionVision.jpg') no-repeat right center;
+	background:url('../images/menuMisionVision2.jpg') no-repeat right center;
 	width:148px;
 	height:50px;
 	margin:auto;
@@ -56,7 +56,7 @@
 }
 #menuContacto
 {
-	background:url('../images/lc_menuContacto.jpg') no-repeat right center;
+	background:url('../images/menuContacto2.jpg') no-repeat right center;
 	width:111px;
 	height:50px;
 	margin:auto;
@@ -64,7 +64,7 @@
 }
 #menuResto
 {
-	background:url('../images/lc_menuRestoCabecera.jpg') no-repeat right center;
+	background:url('../images/menuRestoCabecera2.jpg') no-repeat right center;
 	width:388px;
 	height:50px;
 	margin:auto;
