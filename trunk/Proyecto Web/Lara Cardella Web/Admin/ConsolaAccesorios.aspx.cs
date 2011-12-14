@@ -89,7 +89,6 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             btnCancelar.Enabled = false;
             btnEliminar.Enabled = false;
             btnModificar.Enabled = false;
-            btnEliminarImagen.Enabled = false;
         }
     }
 
@@ -281,10 +280,6 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         grillaImagenes.Visible = false;
     }
 
-    protected void btnEliminarImagen_Click(object sender, EventArgs e)
-    {
-        
-    }
     protected void btnModificar_Click(object sender, EventArgs e)
     {
         try
@@ -292,7 +287,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             limpiarCampos();
             lblOutput.Text = "";
             //obtengo el id del accesorio a modificar
-            int id = Convert.ToInt32(grillaAccesorios.SelectedRow.Cells[1].Text);
+            int id = Convert.ToInt32(grillaAccesorios.SelectedDataKey.Value); 
             //traigo los datos del accesorio de la bd
             DataTable dt = Accesorio.getAccesorioById(id);
             //cargo los datos grales del accesorio
@@ -351,7 +346,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         try
         {
             //obtengo solo el idAccesorio de la grilla para borrarlo de la BD
-            int id = Convert.ToInt32(grillaAccesorios.SelectedRow.Cells[1].Text);
+            int id = Convert.ToInt32(grillaAccesorios.SelectedDataKey.Value);
             //Obtengo todas las imagenes (grandes y chicas) de ese accesorio antes de borrarlo de la BD
             List<Imagen> listaImagenes = Accesorio.getImagenesAccesorio(id);
             Accesorio.deleteAccesorio(id);
@@ -407,10 +402,6 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         }
     }
 
-    protected void grillaImagenes_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        btnEliminarImagen.Enabled = true;
-    }
     protected void grillaAccesorios_SelectedIndexChanged(object sender, EventArgs e)
     {
         actualizarEstadoBotones(true);
@@ -458,8 +449,6 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             cargarImagenesAccesorio(idAcc);
 
             lblOutput.Text = "La imagen fue eliminada con exito";
-
-            btnEliminarImagen.Enabled = false;
         }
         catch (Exception ex)
         {
