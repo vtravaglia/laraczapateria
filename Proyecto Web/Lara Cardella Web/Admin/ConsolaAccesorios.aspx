@@ -94,12 +94,12 @@
 
     <table id="imagenesCargadasTable">
         <tr>
-            <td colspan="3">
+            <td>
                <asp:Label ID="lblImgsCargadas" runat="server" Text="Imagenes Cargadas:"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td>
                <asp:GridView ID="grillaImagenes" runat="server" AutoGenerateColumns="False" 
                     CellPadding="4" ForeColor="#333333" 
                     GridLines="None" onselectedindexchanged="grillaImagenes_SelectedIndexChanged" 
@@ -120,10 +120,6 @@
                     <EditRowStyle BackColor="#999999" />
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                </asp:GridView>
-            </td>
-            <td valign="bottom">
-               <asp:Button ID="btnEliminarImagen" runat="server" 
-                    onclick="btnEliminarImagen_Click" Text="Eliminar Imagen" />
             </td>
         </tr>
     </table>

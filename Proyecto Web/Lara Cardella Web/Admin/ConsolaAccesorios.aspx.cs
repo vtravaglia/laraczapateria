@@ -193,14 +193,14 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 //Agrego los path (GRANDE Y CHICA) de la imagen guardada para registrarlos en la BD
                 pathImgsToSaveInBD = new List<Imagen>();
                 Imagen img = new Imagen();
-                if (Session["imgPathsToSaveInBD"] != null)
+                if (Session["imgAccPathsToSaveInBD"] != null)
                 {
-                    pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
+                    pathImgsToSaveInBD = (List<Imagen>)Session["imgAccPathsToSaveInBD"];
                 }
                 img.PathBig = sSavePath + sFilename;
                 img.PathSmall = sSavePath + sThumbFile;
                 pathImgsToSaveInBD.Add(img);
-                Session["imgPathsToSaveInBD"] = pathImgsToSaveInBD;
+                Session["imgAccPathsToSaveInBD"] = pathImgsToSaveInBD;
 
                 // Displaying success information
                 lblOutput.Text = "Imagen cargada con exito!";
@@ -236,7 +236,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             desc = txtDesc.Text;
             try
             {
-                pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
+                pathImgsToSaveInBD = (List<Imagen>)Session["imgAccPathsToSaveInBD"];
                 if (txtId.Text.CompareTo("") != 0)
                 {
                     //Modifico el accesorio existente
@@ -251,7 +251,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 }
                 //No limpio los paths de las imagenes en el limpiarCampos() porque el limpiarCampos()
                 //se ejecuta en el load y la variable session no se tiene que limpiar ahi.
-                Session["imgPathsToSaveInBD"] = new List<Imagen>();
+                Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
                 cargarAccesorios();
                 limpiarCampos();
             }
@@ -276,7 +276,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         txtCodigo.Focus();
         btnCancelar.Enabled = false;
         lblOutput.Text = "";
-        Session["imgPathsToSaveInBD"] = new List<Imagen>();
+        Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
         grillaImagenes.DataSource = null;
         grillaImagenes.Visible = false;
     }
@@ -314,7 +314,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
 
             if (listaImgs != null)
             {
-                Session["imgPathsToSaveInBD"] = listaImgs;
+                Session["imgAccPathsToSaveInBD"] = listaImgs;
             }
             else
             {
@@ -362,7 +362,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             cargarAccesorios();
             limpiarCampos();
             btnEliminar.Enabled = false;
-            Session["imgPathsToSaveInBD"] = new List<Imagen>();
+            Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
         }
         catch (IOException exc)
         {
@@ -444,7 +444,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             eliminarImagenesDelServer(imgToDelete);
 
             //por ultimo borro la imagen de la variable de session
-            pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
+            pathImgsToSaveInBD = (List<Imagen>)Session["imgAccPathsToSaveInBD"];
             foreach (Imagen img in pathImgsToSaveInBD)
             {
                 if (img.IdImagen == idImg)

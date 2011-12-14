@@ -206,7 +206,7 @@ public class Accesorio : ConexionBD
         {
             OdbcCommand cmd = new OdbcCommand("SELECT pathGrande, pathChica, idImagen " +
                                               "FROM imagen " +
-                                              "WHERE idCalzado=" + idAccesorio.ToString(), ObtenerConexion());
+                                              "WHERE idAccesorio=" + idAccesorio.ToString(), ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
             DataTable dt = new DataTable();
