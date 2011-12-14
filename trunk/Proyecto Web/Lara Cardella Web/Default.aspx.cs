@@ -86,12 +86,12 @@ public partial class _Default : System.Web.UI.Page
             if (accesorio.IdColeccion == 1)
             {
                 cantAccOI++;
-                listaAccesoriosOI += accesorio.PathImagenChica + " : " + accesorio.PathImagenGrande + " : " + accesorio.Descripcion + ",";
+                listaAccesoriosOI += accesorio.PathImagenChica.Substring(3) + " : " + accesorio.PathImagenGrande.Substring(3) + " : " + accesorio.Descripcion + ",";
             }
             else 
             {
                 cantAccPV++;
-                listaAccesoriosPV += accesorio.PathImagenChica + " : " + accesorio.PathImagenGrande + " : " + accesorio.Descripcion + ",";
+                listaAccesoriosPV += accesorio.PathImagenChica.Substring(3) + " : " + accesorio.PathImagenGrande.Substring(3) + " : " + accesorio.Descripcion + ",";
             }
             
         }
