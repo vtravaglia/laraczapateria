@@ -127,11 +127,11 @@
     </table>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="grillaObjetos_container" Runat="Server">
-    <hr />
     <h4>Accesorios Registrados</h4>
     <asp:GridView ID="grillaAccesorios" runat="server" AutoGenerateColumns="False" AutoGenerateSelectButton="True"
         CellPadding="4" ForeColor="#333333" GridLines="None" Width="778px" CssClass="grillaProductos" 
-        onselectedindexchanged="grillaAccesorios_SelectedIndexChanged">
+        onselectedindexchanged="grillaAccesorios_SelectedIndexChanged" 
+        AllowPaging="True" onpageindexchanging="grillaAccesorios_PageIndexChanging">
         <RowStyle BackColor="#EFF3FB" />
         <Columns>
             <asp:BoundField DataField="idAccesorio" HeaderText="idAccesorio" />

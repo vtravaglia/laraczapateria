@@ -43,6 +43,13 @@
                 </asp:ContentPlaceHolder>
             </div>
             <div id="middle_container_center">
+                <div id="grillaObjetos">
+                    <asp:ContentPlaceHolder id="grillaObjetos_container" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="middle_container_bottom">
+                <hr />
                 <div id="formulario">
                     <h4>Registro/Modificacion</h4>
                     <asp:ContentPlaceHolder id="formulario_container" runat="server">
@@ -50,12 +57,6 @@
                 </div>
                 <div id="imagenesCargadas">
                     <asp:ContentPlaceHolder id="imagenesCargadas_container" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-            </div>
-            <div id="middle_container_bottom">
-                <div id="grillaObjetos">
-                    <asp:ContentPlaceHolder id="grillaObjetos_container" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
             </div>

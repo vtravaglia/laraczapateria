@@ -18,6 +18,11 @@ h3
 {
 	text-align: left;
 }
+hr
+{
+	margin-top:10px;
+	margin-bottom:10px;
+}
 
 #general_container{
 	width: 900px;
@@ -49,10 +54,9 @@ h3
 
 #middle_container_center
 {
-	width:900px;
-	height:350px;
-	margin-top:10px;
 	text-align:left;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 #formulario
 {
@@ -87,6 +91,8 @@ h3
 }
 #middle_container_bottom
 {
+	width:900px;
+	height:350px;
 	text-align:left;
 }
 /* Middle Container - end */
