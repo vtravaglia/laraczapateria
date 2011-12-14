@@ -455,4 +455,10 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         int id = Convert.ToInt32(grillaAccesorios.SelectedRow.Cells[1].Text);
         cargarImagenesAccesorio(id);
     }
+
+    protected void grillaAccesorios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grillaAccesorios.PageIndex = e.NewPageIndex;
+        cargarAccesorios();
+    }
 }
