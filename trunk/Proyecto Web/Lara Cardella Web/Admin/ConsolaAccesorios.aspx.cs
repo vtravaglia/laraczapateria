@@ -283,40 +283,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
 
     protected void btnEliminarImagen_Click(object sender, EventArgs e)
     {
-        try
-        {
-            //obtengo el idImagen de la grilla para borrarla de la BD
-            int idImg = Convert.ToInt32(grillaImagenes.SelectedRow.Cells[1].Text);
-            Imagen imgToDelete = Imagen.getImagen(idImg);
-
-            //tengo que borrar la imagen de la bd
-            Imagen.deleteImagen(idImg);
-
-            //luego que borre la imagen de la BD tengo que borrarlas del server
-            eliminarImagenesDelServer(imgToDelete);
-
-            //por ultimo borro la imagen de la variable de session
-            pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
-            foreach (Imagen img in pathImgsToSaveInBD)
-            {
-                if (img.IdImagen == idImg)
-                {
-                    pathImgsToSaveInBD.Remove(img);
-                    break;
-                }
-            }
-            //obtengo solo el idAccesorio de la grilla para borrarlo de la BD
-            int idAcc = Convert.ToInt32(grillaAccesorios.SelectedRow.Cells[1].Text);
-            cargarImagenesAccesorio(idAcc);
-
-            lblOutput.Text = "La imagen fue eliminada con exito";
-
-            btnEliminarImagen.Enabled = false;
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
+        
     }
     protected void btnModificar_Click(object sender, EventArgs e)
     {
@@ -460,5 +427,66 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
     {
         grillaAccesorios.PageIndex = e.NewPageIndex;
         cargarAccesorios();
+    }
+    protected void grillaImagenes_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            //obtengo el idImagen de la grilla para borrarla de la BD
+            int idImg = Convert.ToInt32(grillaImagenes.DataKeys[e.RowIndex].Value);
+            lblOutput.Text = "id seleccionado" + idImg.ToString();
+            Imagen imgToDelete = Imagen.getImagen(idImg);
+
+            //tengo que borrar la imagen de la bd
+            Imagen.deleteImagen(idImg);
+
+            //luego que borre la imagen de la BD tengo que borrarlas del server
+            eliminarImagenesDelServer(imgToDelete);
+
+            //por ultimo borro la imagen de la variable de session
+            pathImgsToSaveInBD = (List<Imagen>)Session["imgPathsToSaveInBD"];
+            foreach (Imagen img in pathImgsToSaveInBD)
+            {
+                if (img.IdImagen == idImg)
+                {
+                    pathImgsToSaveInBD.Remove(img);
+                    break;
+                }
+            }
+            //obtengo solo el idAccesorio de la grilla para borrarlo de la BD
+            int idAcc = Convert.ToInt32(grillaAccesorios.SelectedRow.Cells[1].Text);
+            cargarImagenesAccesorio(idAcc);
+
+            lblOutput.Text = "La imagen fue eliminada con exito";
+
+            btnEliminarImagen.Enabled = false;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void grillaImagenes_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        //CODIGO QUE AGREGA EL MJE DE CONFIRMACION ANTES DE BORRAR UNA IMAGEN
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            // loop all data rows
+            foreach (DataControlFieldCell cell in e.Row.Cells)
+            {
+                // check all cells in one row
+                foreach (Control control in cell.Controls)
+                {
+                    // Must use LinkButton here instead of ImageButton
+                    // if you are having Links (not images) as the command button.
+                    LinkButton button = control as LinkButton;
+
+                    if (button != null && button.CommandName == "Delete")
+                        // Add delete confirmation
+                        button.OnClientClick = "return confirm('Are you sure you want to delete this record?');";
+                }
+            }
+        }
+
     }
 }
