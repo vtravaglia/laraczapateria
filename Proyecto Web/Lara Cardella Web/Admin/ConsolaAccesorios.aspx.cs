@@ -471,7 +471,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 }
             }
             //obtengo solo el idAccesorio de la grilla para borrarlo de la BD
-            int idAcc = Convert.ToInt32(grillaAccesorios.SelectedRow.Cells[1].Text);
+            int idAcc = Convert.ToInt32(grillaAccesorios.SelectedDataKey.Value);
             cargarImagenesAccesorio(idAcc);
 
             lblOutput.Text = "La imagen fue eliminada con exito";
