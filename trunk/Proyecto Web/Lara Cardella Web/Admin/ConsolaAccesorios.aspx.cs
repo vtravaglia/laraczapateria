@@ -282,50 +282,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
 
     protected void btnModificar_Click(object sender, EventArgs e)
     {
-        try
-        {
-            limpiarCampos();
-            lblOutput.Text = "";
-            //obtengo el id del accesorio a modificar
-            int id = Convert.ToInt32(grillaAccesorios.SelectedDataKey.Value); 
-            //traigo los datos del accesorio de la bd
-            DataTable dt = Accesorio.getAccesorioById(id);
-            //cargo los datos grales del accesorio
-            txtId.Visible = true;
-            txtId.Text = dt.Rows[0][0].ToString();
-            txtCodigo.Text = dt.Rows[0][1].ToString();
-            txtDesc.Text = dt.Rows[0][2].ToString();
-            ddlColeccion.SelectedIndex = 0;
-            for (int i = 0; i < ddlColeccion.Items.Count; i++)
-            {
-                ddlColeccion.SelectedIndex = i;
-                if (ddlColeccion.SelectedValue == dt.Rows[0][3].ToString())
-                {
-                    break;
-                }
-            }
-            //cargo las imagenes del accesorio en la variable session
-            List<Imagen> listaImgs = Accesorio.getImagenesAccesorio(id);
-
-            if (listaImgs != null)
-            {
-                Session["imgAccPathsToSaveInBD"] = listaImgs;
-            }
-            else
-            {
-                lblOutput.Text = "Error al intentar obtener las imagenes";
-                return;
-            }
-            //cargo las imagenes chicas en la grilla
-            cargarImagenesAccesorio(id);
-            grillaImagenes.Visible = true;
-
-            btnCancelar.Enabled = true;
-        }
-        catch (Exception ex)
-        {
-            lblOutput.Text = ex.Message;
-        }
+        disableEditableElements(false);
     }
 
     private void cargarImagenesAccesorio(int id)
@@ -405,6 +362,75 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
     protected void grillaAccesorios_SelectedIndexChanged(object sender, EventArgs e)
     {
         actualizarEstadoBotones(true);
+        try
+        {
+            limpiarCampos();
+            lblOutput.Text = "";
+            //obtengo el id del accesorio a modificar
+            int id = Convert.ToInt32(grillaAccesorios.SelectedDataKey.Value);
+            //traigo los datos del accesorio de la bd
+            DataTable dt = Accesorio.getAccesorioById(id);
+            //cargo los datos grales del accesorio
+            txtId.Text = dt.Rows[0][0].ToString();
+            txtCodigo.Text = dt.Rows[0][1].ToString();
+            txtDesc.Text = dt.Rows[0][2].ToString();
+            ddlColeccion.SelectedIndex = 0;
+            for (int i = 0; i < ddlColeccion.Items.Count; i++)
+            {
+                ddlColeccion.SelectedIndex = i;
+                if (ddlColeccion.SelectedValue == dt.Rows[0][3].ToString())
+                {
+                    break;
+                }
+            }
+            //cargo las imagenes del accesorio en la variable session
+            List<Imagen> listaImgs = Accesorio.getImagenesAccesorio(id);
+
+            if (listaImgs != null)
+            {
+                Session["imgAccPathsToSaveInBD"] = listaImgs;
+            }
+            else
+            {
+                lblOutput.Text = "Error al intentar obtener las imagenes";
+                return;
+            }
+            //cargo las imagenes chicas en la grilla
+            cargarImagenesAccesorio(id);
+            grillaImagenes.Visible = true;
+
+            btnCancelar.Enabled = true;
+
+            /*desabilito todos los elementos editables para que no se puedan modificar hasta que hace click
+              en Modificar */
+            disableEditableElements(true);
+        }
+        catch (Exception ex)
+        {
+            lblOutput.Text = ex.Message;
+        }
+    }
+
+    private void disableEditableElements(bool disable)
+    {
+        if (disable)
+        {
+            txtCodigo.Enabled = false;
+            txtDesc.Enabled = false;
+            ddlColeccion.Enabled = false;
+            btnUpload.Enabled = false;
+            btnGuardar.Enabled = false;
+            grillaImagenes.Enabled = false;
+        }
+        else
+        {
+            txtCodigo.Enabled = true;
+            txtDesc.Enabled = true;
+            ddlColeccion.Enabled = true;
+            btnUpload.Enabled = true;
+            btnGuardar.Enabled = true;
+            grillaImagenes.Enabled = true;
+        }
     }
     protected void grillaImagenes_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
