@@ -20,6 +20,17 @@
             height: 18px;
         }
     </style>
+    <script language="javascript" type="text/javascript">
+        function validarImagenNotEmpty()
+        {
+            if (document.getElementById("<%=btnfilUpload.ClientID%>").value=="")
+            {
+                alert("No hay ninguna imagen para cargar");
+                document.getElementById("<%=btnfilUpload.ClientID%>").focus();
+                return false;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="subTitle_container" Runat="Server">
     <h3>ABM Accesorios</h3>
@@ -67,7 +78,8 @@
             </td>
             <td class="style1">
                 <input id="btnfilUpload" type="file" runat="server" onclick="return filUpload_onclick()" />
-                <asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Cargar Imagen" />
+                <asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Cargar Imagen" 
+                    OnClientClick="return validarImagenNotEmpty()"/>
             </td>
             <td class="style2">
             </td>
