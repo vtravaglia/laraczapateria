@@ -418,6 +418,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
 
     private void disableEditableElements(bool disable)
     {
+        //si disable == true deshabilito los elementos
         if (disable)
         {
             txtCodigo.Enabled = false;
@@ -429,6 +430,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         }
         else
         {
+            //disable = false, entonces habilito los elementos
             txtCodigo.Enabled = true;
             txtDesc.Enabled = true;
             ddlColeccion.Enabled = true;
