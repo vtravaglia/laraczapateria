@@ -148,7 +148,7 @@
     <asp:Button ID="btnModificar" runat="server" CausesValidation="False" OnClick="btnModificar_Click"
         Text="Modificar" />
     <asp:Button ID="btnEliminar" class="btnSeparable" runat="server" CausesValidation="False" 
-        Text="Eliminar" OnClientClick="javascript:return confirm('Esta seguro que desea borrar el calzado?');"
+        Text="Eliminar" OnClientClick="javascript:return confirm('Esta seguro que desea borrar el accesorio?');"
         onclick="btnEliminar_Click" />
 </asp:Content>
 
