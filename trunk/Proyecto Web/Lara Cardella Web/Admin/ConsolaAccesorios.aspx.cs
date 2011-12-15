@@ -253,6 +253,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
                 cargarAccesorios();
                 limpiarCampos();
+                grillaAccesorios.SelectedIndex = -1;
             }
             catch (pathImgEmptyException imgEx)
             {
@@ -274,10 +275,13 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         limpiarCampos();
         txtCodigo.Focus();
         btnCancelar.Enabled = false;
+        btnEliminar.Enabled = false;
         lblOutput.Text = "";
         Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
         grillaImagenes.DataSource = null;
         grillaImagenes.Visible = false;
+        grillaAccesorios.SelectedIndex = -1;
+        disableEditableElements(false);
     }
 
     protected void btnModificar_Click(object sender, EventArgs e)
@@ -315,6 +319,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             limpiarCampos();
             btnEliminar.Enabled = false;
             Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
+            grillaAccesorios.SelectedIndex = -1;
         }
         catch (IOException exc)
         {
@@ -498,7 +503,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
 
                     if (button != null && button.CommandName == "Delete")
                         // Add delete confirmation
-                        button.OnClientClick = "return confirm('Are you sure you want to delete this record?');";
+                        button.OnClientClick = "return confirm('Esta seguro que desea borrar la imagen?');";
                 }
             }
         }
