@@ -18,12 +18,12 @@ public class ConexionBD
 {
     private static OdbcConnection con;
 
-	public ConexionBD()
-	{
-		
-	}
+    public ConexionBD()
+    {
 
-    public static OdbcConnection ObtenerConexion() 
+    }
+
+    public static OdbcConnection ObtenerConexion()
     {
         try
         {
@@ -31,9 +31,10 @@ public class ConexionBD
             {
                 con = new OdbcConnection(ConfigurationManager.ConnectionStrings["laracardellaCn"].ConnectionString.ToString());
             }
-           // con = new OdbcConnection("Driver={MySQL ODBC 5.1 Driver};Server=localhost;Database=laracardella;User=root;Password=admin;");
-            
-            con.Open();
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
             return con;
         }
         catch (Exception e)
@@ -42,7 +43,7 @@ public class ConexionBD
         }
 
     }
-    
+
     public static void cerrarConexion()
     {
         try
@@ -69,18 +70,18 @@ public class ConexionBD
             OdbcCommand cmd = new OdbcCommand("SELECT c.idCalzado, c.codigo, c.nombre, c.descripcion, c.idColeccion ,i.pathGrande, i.pathChica FROM laracardella.calzado c, laracardella.imagen i WHERE c.idCalzado=i.idCalzado", con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
-   
-            while(dr.Read())
+
+            while (dr.Read())
             {
                 Calzado calzado = new Calzado();
-                calzado.IdCalzado=dr.GetInt32(0);
+                calzado.IdCalzado = dr.GetInt32(0);
                 calzado.Codigo = dr.GetString(1);
                 calzado.Nombre = dr.GetString(2);
                 calzado.Descripcion = dr.GetString(3);
                 calzado.IdColeccion = dr.GetInt32(4);
                 calzado.PathImagenGrande = dr.GetString(5);
                 calzado.PathImagenChica = dr.GetString(6);
-                
+
                 listaCalzados.Add(calzado);
             }
         }
