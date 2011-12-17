@@ -87,7 +87,7 @@
     </table>
     <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
     <asp:Button ID="btnCancelar" class="btnSeparable" runat="server" 
-        Text="Cancelar" onclick="btnCancelar_Click" />
+        Text="Cancelar" onclick="btnCancelar_Click" CausesValidation="False" />
     <table id="mensajeTable">
         <tr>
             <td>
