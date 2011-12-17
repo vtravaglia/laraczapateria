@@ -20,7 +20,8 @@
     <div id="general_container">
         <div id="top_container">
             <div id="loginInfo">
-                <asp:Label ID="lblUsrLogueado" runat="server" Text="Bienvenido"></asp:Label>
+                <asp:Label ID="lblBienvenido" runat="server" Text="Bienvenido" Font-Bold="True"></asp:Label>
+                <asp:Label ID="lblUsrLogueado" runat="server" Text="Usuario"></asp:Label>
                 <asp:Button ID="btnCerrarSesion" runat="server" 
                     Text="Cerrar Sesion" CausesValidation="False" onclick="btnCerrarSesion_Click" 
                     Width="99px" />

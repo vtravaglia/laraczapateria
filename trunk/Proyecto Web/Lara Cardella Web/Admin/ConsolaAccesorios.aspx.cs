@@ -273,6 +273,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 cargarAccesorios();
                 limpiarCampos();
                 grillaAccesorios.SelectedIndex = -1;
+                btnCancelar.Enabled = false;
             }
             catch (pathImgEmptyException imgEx)
             {
@@ -295,6 +296,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         txtCodigo.Focus();
         btnCancelar.Enabled = false;
         btnEliminar.Enabled = false;
+        btnModificar.Enabled = false;
         lblOutput.Text = "";
         Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
         grillaImagenes.DataSource = null;
@@ -337,8 +339,13 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             cargarAccesorios();
             limpiarCampos();
             btnEliminar.Enabled = false;
+            btnCancelar.Enabled = false;
+            btnModificar.Enabled = false;
             Session["imgAccPathsToSaveInBD"] = new List<Imagen>();
             grillaAccesorios.SelectedIndex = -1;
+            /* habilito todos los elementos editables */
+            disableEditableElements(false);
+            txtCodigo.Focus();
         }
         catch (IOException exc)
         {
