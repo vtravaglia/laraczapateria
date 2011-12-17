@@ -29,6 +29,10 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 limpiarCampos();
                 actualizarEstadoBotones(false);
             }
+            else
+            {
+                setSuccessColorOutput(false);
+            }
         }
     }
 
@@ -202,6 +206,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 Session["imgAccPathsToSaveInBD"] = pathImgsToSaveInBD;
 
                 // Displaying success information
+                setSuccessColorOutput(true);
                 lblOutput.Text = "Imagen cargada con exito!";
 
                 // Destroy objects
@@ -216,6 +221,18 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 lblOutput.Text = "El archivo no es una imagen valida";
                 System.IO.File.Delete(Server.MapPath(sSavePath + sFilename));
             }
+        }
+    }
+
+    private void setSuccessColorOutput(bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            lblOutput.ForeColor = Color.Green;
+        }
+        else
+        {
+            lblOutput.ForeColor = Color.Red;
         }
     }
 
@@ -240,12 +257,14 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
                 {
                     //Modifico el accesorio existente
                     Accesorio.updateAccesorio(Convert.ToInt32(txtId.Text), cod, desc, idCol, pathImgsToSaveInBD);
+                    setSuccessColorOutput(true);
                     lblOutput.Text = "Accesorio actualizado con exito!";
                 }
                 else
                 {
                     //Guardo el nuevo accesorio
                     Accesorio.insertAccesorio(cod, desc, idCol, pathImgsToSaveInBD);
+                    setSuccessColorOutput(true);
                     lblOutput.Text = "Accesorio registrado con exito!";
                 }
                 //No limpio los paths de las imagenes en el limpiarCampos() porque el limpiarCampos()
@@ -313,8 +332,8 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             Accesorio.deleteAccesorio(id);
             //luego que borre el accesorio de la BD tengo que borrar las imagenes que estan en el server
             eliminarImagenesDelServer(listaImagenes);
-
-            lblOutput.Text = "El Producto fue eliminado con exito";
+            setSuccessColorOutput(true);
+            lblOutput.Text = "El accesorio fue eliminado con exito";
             cargarAccesorios();
             limpiarCampos();
             btnEliminar.Enabled = false;
@@ -480,7 +499,7 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
             //obtengo solo el idAccesorio de la grilla para borrarlo de la BD
             int idAcc = Convert.ToInt32(grillaAccesorios.SelectedDataKey.Value);
             cargarImagenesAccesorio(idAcc);
-
+            setSuccessColorOutput(true);
             lblOutput.Text = "La imagen fue eliminada con exito";
         }
         catch (Exception ex)
