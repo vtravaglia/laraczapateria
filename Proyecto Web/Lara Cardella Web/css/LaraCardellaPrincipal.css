@@ -38,9 +38,25 @@
 	margin:auto;
 	float:left;
 }
+#menuHome:hover
+{
+	background:url('../images/menuHome2Hover.jpg') no-repeat right center;
+	width:91px;
+	height:50px;
+	margin:auto;
+	float:left;
+}
 #menuQuienesSomos
 {
 	background:url('../images/menuQuienesSomos2.jpg') no-repeat right center;
+	width:162px;
+	height:50px;
+	margin:auto;
+	float:left;
+}
+#menuQuienesSomos:hover
+{
+	background:url('../images/menuQuienesSomos2Hover.jpg') no-repeat right center;
 	width:162px;
 	height:50px;
 	margin:auto;
@@ -54,9 +70,25 @@
 	margin:auto;
 	float:left;
 }
+#menuMisionVision:hover
+{
+	background:url('../images/menuMisionVision2Hover.jpg') no-repeat right center;
+	width:148px;
+	height:50px;
+	margin:auto;
+	float:left;
+}
 #menuContacto
 {
 	background:url('../images/menuContacto2.jpg') no-repeat right center;
+	width:111px;
+	height:50px;
+	margin:auto;
+	float:left;
+}
+#menuContacto:hover
+{
+	background:url('../images/menuContacto2Hover.jpg') no-repeat right center;
 	width:111px;
 	height:50px;
 	margin:auto;
@@ -144,7 +176,6 @@
 	font-size:15px;
 	margin-left:25px;
 	letter-spacing:2px;
-	cursor:pointer;
 	z-index:1;
 	position:relative;
 }

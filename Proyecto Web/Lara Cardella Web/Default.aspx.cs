@@ -68,12 +68,12 @@ public partial class _Default : System.Web.UI.Page
             if (calzado.IdColeccion == 1)
             {
                 cantZapOI++;
-                listaCalzadosOI += calzado.PathImagenChica + " : " + calzado.PathImagenGrande + " : " + calzado.Descripcion + ",";
+                listaCalzadosOI += calzado.PathImagenChica.Substring(3) + " : " + calzado.PathImagenGrande.Substring(3) + " : " + calzado.Descripcion + ",";
             }
             else
             {
                 cantZapPV++;
-                listaCalzadosPV += calzado.PathImagenChica + " : " + calzado.PathImagenGrande + " : " + calzado.Descripcion + ",";
+                listaCalzadosPV += calzado.PathImagenChica.Substring(3) + " : " + calzado.PathImagenGrande.Substring(3) + " : " + calzado.Descripcion + ",";
             }
             
         }

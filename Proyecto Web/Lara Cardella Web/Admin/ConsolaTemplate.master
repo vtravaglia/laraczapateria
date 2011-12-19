@@ -57,10 +57,12 @@
                     <asp:ContentPlaceHolder id="formulario_container" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
-                <div id="imagenesCargadas">
-                    <asp:ContentPlaceHolder id="imagenesCargadas_container" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
+                <a name="anclaImagenesCargadas"
+                    <div id="imagenesCargadas">
+                        <asp:ContentPlaceHolder id="imagenesCargadas_container" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </a>
             </div>
         </div>
         <div id="bottom_container">
