@@ -34,6 +34,8 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="subTitle_container" Runat="Server">
+<a name="aM" id="aM">
+    </a>
     <h3>ABM Calzados</h3>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="formulario_container" Runat="Server">
@@ -89,18 +91,20 @@
             <td class="style3">
                 <asp:Label ID="lblImagen" runat="server" Text="Imagen:"></asp:Label>
             </td>
-            <td class="style1">
+            
+            <td class="style1">              
                 <input id="btnfilUpload" type="file" runat="server" onclick="return filUpload_onclick()" />
                 <asp:Button ID="btnUpload" runat="server" OnClick="btnUpload_Click" Text="Cargar Imagen" 
-                    OnClientClick="return validarImagenNotEmpty()"/>
+                OnClientClick="return validarImagenNotEmpty()" 
+                PostBackUrl="#aM"/>
             </td>
             <td class="style2">
             </td>
         </tr>
     </table>
-    <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
+    <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" PostBackUrl="#aM"/>
     <asp:Button ID="btnCancelar" class="btnSeparable" runat="server" 
-        Text="Cancelar" onclick="btnCancelar_Click" CausesValidation="False" />
+        Text="Cancelar" onclick="btnCancelar_Click" CausesValidation="False" PostBackUrl="#aM"/>
     <table id="mensajeTable">
         <tr>
             <td>
