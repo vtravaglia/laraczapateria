@@ -113,113 +113,129 @@ public partial class Admin_ConsolaAccesorios : System.Web.UI.Page
         // If file field is not empty
         if (btnfilUpload.PostedFile != null)
         {
-            // Check file size (must not be 0)
-            HttpPostedFile myFile = btnfilUpload.PostedFile;
-            int nFileLen = myFile.ContentLength;
-            if (nFileLen == 0)
-            {
-                lblOutput.Text = "Ningun archivo fue cargado.";
-                return;
-            }
-
-            // Check file extension (must be JPG)
-            if (System.IO.Path.GetExtension(myFile.FileName).ToLower() != ".jpg")
-            {
-                lblOutput.Text = "El archivo debe tener una extension JPG";
-                return;
-            }
-
-            // Read file into a data stream
-            byte[] myData = new Byte[nFileLen];
-            myFile.InputStream.Read(myData, 0, nFileLen);
-
-            // Make sure a duplicate file does not exist.  If it does, keep on appending an 
-
-            // incremental numeric until it is unique
-            string sFilename = System.IO.Path.GetFileName(myFile.FileName);
-            int file_append = 0;
-            while (System.IO.File.Exists(Server.MapPath(sSavePath + sFilename)))
-            {
-                file_append++;
-                sFilename = System.IO.Path.GetFileNameWithoutExtension(myFile.FileName)
-                                 + file_append.ToString() + ".jpg";
-            }
-
-            //Ubico la imagen segun a la coleccion a la que corresponda el accesorio
-            if ("oto-inv".Equals(ddlColeccion.SelectedItem.Text))//agrego el folder "oto-inv"
-            {
-                sSavePath += "oto-inv/";
-            }
-            else
-            {
-                if ("pri-ver".Equals(ddlColeccion.SelectedItem.Text))//agrego el folder "pri-ver"
-                {
-                    sSavePath += "pri-ver/";
-                }
-            }
-
-            sSavePath = "../" + sSavePath;
-
-            // Save the stream to disk
-            System.IO.FileStream newFile
-                    = new System.IO.FileStream(Server.MapPath(sSavePath + sFilename),
-                                               System.IO.FileMode.Create);
-            newFile.Write(myData, 0, myData.Length);
-            newFile.Close();
-
-            // Check whether the file is really a JPEG by opening it
-            System.Drawing.Image.GetThumbnailImageAbort myCallBack =
-                           new System.Drawing.Image.GetThumbnailImageAbort(ThumbnailCallback);
-            Bitmap myBitmap;
             try
             {
-                myBitmap = new Bitmap(Server.MapPath(sSavePath + sFilename));
+                // Check file size (must not be 0)
+                HttpPostedFile myFile = btnfilUpload.PostedFile;
+                int nFileLen = myFile.ContentLength;
+                if (nFileLen == 0)
+                {
+                    lblOutput.Text = "Ningun archivo fue cargado.";
+                    return;
+                }
 
-                // If jpg file is a jpeg, create a thumbnail filename that is unique.
-                file_append = 0;
-                string sThumbFile = System.IO.Path.GetFileNameWithoutExtension(myFile.FileName)
-                                                         + sThumbExtension + ".jpg";
-                while (System.IO.File.Exists(Server.MapPath(sSavePath + sThumbFile)))
+                // Check file extension (must be JPG)
+                if (System.IO.Path.GetExtension(myFile.FileName).ToLower() != ".jpg")
+                {
+                    lblOutput.Text = "El archivo debe tener una extension JPG";
+                    return;
+                }
+
+                // Read file into a data stream
+                byte[] myData = new Byte[nFileLen];
+                myFile.InputStream.Read(myData, 0, nFileLen); 
+
+                //Ubico la imagen segun a la coleccion a la que corresponda el accesorio
+                if ("oto-inv".Equals(ddlColeccion.SelectedItem.Text))//agrego el folder "oto-inv"
+                {
+                    sSavePath += "oto-inv/";
+                }
+                else
+                {
+                    if ("pri-ver".Equals(ddlColeccion.SelectedItem.Text))//agrego el folder "pri-ver"
+                    {
+                        sSavePath += "pri-ver/";
+                    }
+                }
+
+                // Make sure a duplicate file does not exist.  If it does, keep on appending an
+                // incremental numeric until it is unique
+                string sFilename = System.IO.Path.GetFileName(myFile.FileName);
+                int file_append = 0;
+                while (System.IO.File.Exists(Server.MapPath(sSavePath + sFilename)))
                 {
                     file_append++;
-                    sThumbFile = System.IO.Path.GetFileNameWithoutExtension(myFile.FileName) +
-                                   file_append.ToString() + sThumbExtension + ".jpg";
+                    sFilename = System.IO.Path.GetFileNameWithoutExtension(myFile.FileName)
+                                     + file_append.ToString() + ".jpg";
                 }
 
-                // Save thumbnail and output it onto the webpage
-                System.Drawing.Image myThumbnail
-                        = myBitmap.GetThumbnailImage(intThumbWidth,
-                                                     intThumbHeight, myCallBack, IntPtr.Zero);
-                myThumbnail.Save(Server.MapPath(sSavePath + sThumbFile));
-                imgPicture.ImageUrl = sSavePath + sThumbFile;
-
-                //Agrego los path (GRANDE Y CHICA) de la imagen guardada para registrarlos en la BD
-                pathImgsToSaveInBD = new List<Imagen>();
-                Imagen img = new Imagen();
-                if (Session["imgAccPathsToSaveInBD"] != null)
+                sSavePath = "../" + sSavePath;
+                System.IO.FileStream newFile=null;
+                try
                 {
-                    pathImgsToSaveInBD = (List<Imagen>)Session["imgAccPathsToSaveInBD"];
+                    // Save the stream to disk
+                    newFile = new System.IO.FileStream(Server.MapPath(sSavePath + sFilename),System.IO.FileMode.Create);
+
+                    newFile.Write(myData, 0, myData.Length);
+                    newFile.Close();
                 }
-                img.PathBig = sSavePath + sFilename;
-                img.PathSmall = sSavePath + sThumbFile;
-                pathImgsToSaveInBD.Add(img);
-                Session["imgAccPathsToSaveInBD"] = pathImgsToSaveInBD;
+                catch (Exception exe)
+                {
+                    lblOutput.Text = lblOutput.Text +"\nPath: " + sSavePath + "\n Error del sistema: " + exe.Message;
+                    if (newFile != null)
+                    {
+                        lblOutput.Text = lblOutput.Text + "File: " + newFile.ToString();
+                    }
+                }
+                
+                // Check whether the file is really a JPEG by opening it
+                System.Drawing.Image.GetThumbnailImageAbort myCallBack =
+                               new System.Drawing.Image.GetThumbnailImageAbort(ThumbnailCallback);
+                Bitmap myBitmap;
+                try
+                {
+                    myBitmap = new Bitmap(Server.MapPath(sSavePath + sFilename));
 
-                // Displaying success information
-                setSuccessColorOutput(true);
-                lblOutput.Text = "Imagen cargada con exito!";
+                    // If jpg file is a jpeg, create a thumbnail filename that is unique.
+                    file_append = 0;
+                    string sThumbFile = System.IO.Path.GetFileNameWithoutExtension(myFile.FileName)
+                                                             + sThumbExtension + ".jpg";
+                    while (System.IO.File.Exists(Server.MapPath(sSavePath + sThumbFile)))
+                    {
+                        file_append++;
+                        sThumbFile = System.IO.Path.GetFileNameWithoutExtension(myFile.FileName) +
+                                       file_append.ToString() + sThumbExtension + ".jpg";
+                    }
 
-                // Destroy objects
-                myThumbnail.Dispose();
-                myBitmap.Dispose();
-                //habilito el cancelar por si el usr se arrepiente de guardar
-                btnCancelar.Enabled = true;
+                    // Save thumbnail and output it onto the webpage
+                    System.Drawing.Image myThumbnail
+                            = myBitmap.GetThumbnailImage(intThumbWidth,
+                                                         intThumbHeight, myCallBack, IntPtr.Zero);
+                    myThumbnail.Save(Server.MapPath(sSavePath + sThumbFile));
+                    imgPicture.ImageUrl = sSavePath + sThumbFile;
+
+                    //Agrego los path (GRANDE Y CHICA) de la imagen guardada para registrarlos en la BD
+                    pathImgsToSaveInBD = new List<Imagen>();
+                    Imagen img = new Imagen();
+                    if (Session["imgAccPathsToSaveInBD"] != null)
+                    {
+                        pathImgsToSaveInBD = (List<Imagen>)Session["imgAccPathsToSaveInBD"];
+                    }
+                    img.PathBig = sSavePath + sFilename;
+                    img.PathSmall = sSavePath + sThumbFile;
+                    pathImgsToSaveInBD.Add(img);
+                    Session["imgAccPathsToSaveInBD"] = pathImgsToSaveInBD;
+
+                    // Displaying success information
+                    setSuccessColorOutput(true);
+                    lblOutput.Text = "Imagen cargada con exito!";
+
+                    // Destroy objects
+                    myThumbnail.Dispose();
+                    myBitmap.Dispose();
+                    //habilito el cancelar por si el usr se arrepiente de guardar
+                    btnCancelar.Enabled = true;
+                }
+                catch (ArgumentException errArgument)
+                {
+                    // The file wasn't a valid jpg file
+                    lblOutput.Text = lblOutput.Text +"\nEl archivo no es una imagen valida. Detalle: " + errArgument.Message;
+                    System.IO.File.Delete(Server.MapPath(sSavePath + sFilename));
+                }
             }
-            catch (ArgumentException errArgument)
+            catch (Exception ex)
             {
-                // The file wasn't a valid jpg file
-                lblOutput.Text = "El archivo no es una imagen valida";
-                System.IO.File.Delete(Server.MapPath(sSavePath + sFilename));
+                lblOutput.Text = "Error del sistema: "+ex.Message;
             }
         }
     }

@@ -67,7 +67,7 @@ public class ConexionBD
         List<Calzado> listaCalzados = new List<Calzado>();
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT c.idCalzado, c.codigo, c.nombre, c.descripcion, c.idColeccion ,i.pathGrande, i.pathChica FROM laracardella.calzado c, laracardella.imagen i WHERE c.idCalzado=i.idCalzado", con);
+            OdbcCommand cmd = new OdbcCommand("SELECT c.idCalzado, c.codigo, c.nombre, c.descripcion, c.idColeccion ,i.pathGrande, i.pathChica FROM calzado c, imagen i WHERE c.idCalzado=i.idCalzado", con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
 
@@ -107,7 +107,7 @@ public class ConexionBD
         List<Accesorio> listaAccesorio = new List<Accesorio>();
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT a.idAccesorio, a.codigo, a.descripcion, a.idColeccion ,i.pathGrande, i.pathChica FROM laracardella.accesorio a, laracardella.imagen i WHERE a.idAccesorio=i.idAccesorio", con);
+            OdbcCommand cmd = new OdbcCommand("SELECT a.idAccesorio, a.codigo, a.descripcion, a.idColeccion ,i.pathGrande, i.pathChica FROM accesorio a, imagen i WHERE a.idAccesorio=i.idAccesorio", con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
 
@@ -142,7 +142,7 @@ public class ConexionBD
         List<Calzado> listaCalzados = new List<Calzado>();
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT c.idCalzado, c.codigo, c.nombre, c.descripcion, c.idColeccion ,i.pathGrande, i.pathChica FROM laracardella.calzado c, laracardella.imagen i WHERE c.idCalzado=i.idCalzado", con);
+            OdbcCommand cmd = new OdbcCommand("SELECT c.idCalzado, c.codigo, c.nombre, c.descripcion, c.idColeccion ,i.pathGrande, i.pathChica FROM calzado c, imagen i WHERE c.idCalzado=i.idCalzado", con);
             cmd.CommandType = CommandType.Text;
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
