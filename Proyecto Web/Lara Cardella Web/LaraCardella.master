@@ -59,7 +59,13 @@
             </div>
     </div>
     
-        
+    <div id="bottom_container">
+        <div id="piePagina">
+            <hr />
+            <span>Copyrigth © 2012 - www.laracardella.com.ar - Todos 
+            los derechos reservados</span>
+        </div>
+    </div>
     </form>
 </body>
 </html>
