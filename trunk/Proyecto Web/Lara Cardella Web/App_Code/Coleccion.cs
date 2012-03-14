@@ -27,7 +27,7 @@ public class Coleccion:ConexionBD
     {
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT * FROM Coleccion", ObtenerConexion());
+            OdbcCommand cmd = new OdbcCommand("SELECT * FROM coleccion", ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
             DataTable dt = new DataTable();

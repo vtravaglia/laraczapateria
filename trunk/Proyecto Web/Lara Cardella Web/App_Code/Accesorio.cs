@@ -70,7 +70,7 @@ public class Accesorio : ConexionBD
         try
         {
             OdbcCommand cmd = new OdbcCommand("SELECT ac.idAccesorio, ac.codigo, ac.descripcion, co.nombre as coleccion " +
-                                              "FROM Accesorio ac, Coleccion co " +
+                                              "FROM accesorio ac, coleccion co " +
                                               "WHERE co.idColeccion = ac.idColeccion", ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
@@ -262,7 +262,7 @@ public class Accesorio : ConexionBD
         try
         {
             OdbcCommand cmd = new OdbcCommand("SELECT idImagen, pathChica " +
-                                              "FROM Imagen " +
+                                              "FROM imagen " +
                                               "WHERE idAccesorio =" + idAccesorio.ToString(), ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);

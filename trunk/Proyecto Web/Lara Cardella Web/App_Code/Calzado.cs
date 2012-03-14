@@ -77,7 +77,7 @@ public class Calzado:ConexionBD
         try
         {
             OdbcCommand cmd = new OdbcCommand("SELECT ca.idCalzado, ca.codigo, ca.nombre, ca.descripcion, co.nombre as coleccion "+  
-                                              "FROM Calzado ca, Coleccion co "+
+                                              "FROM calzado ca, coleccion co "+
                                               "WHERE co.idColeccion = ca.idColeccion", ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
@@ -269,7 +269,7 @@ public class Calzado:ConexionBD
         try
         {
             OdbcCommand cmd = new OdbcCommand("SELECT idImagen, pathChica " +
-                                              "FROM Imagen " +
+                                              "FROM imagen " +
                                               "WHERE idCalzado =" + idCalzado.ToString(), ObtenerConexion());
 
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
